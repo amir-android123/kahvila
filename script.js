@@ -163,6 +163,59 @@ function initSmoothScroll() {
     });
 }
 
+// ===== LOAD PRODUCTS FROM JSON =====
+async function loadProductsFromJSON() {
+    try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+            console.log('No products.json found, using default products');
+            return;
+        }
+        
+        const products = await response.json();
+        if (products.length > 0) {
+            updateProductDisplay(products);
+        }
+    } catch (error) {
+        console.log('Error loading products:', error);
+    }
+}
+
+function updateProductDisplay(products) {
+    const productsSection = document.getElementById('products');
+    if (!productsSection) return;
+    
+    const productGrid = productsSection.querySelector('.product-grid');
+    if (!productGrid) return;
+    
+    // Clear existing products
+    productGrid.innerHTML = '';
+    
+    // Add new products
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image_url}" alt="${product.name}" loading="lazy">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <div class="product-footer">
+                    <span class="product-price">€${product.price.toFixed(2)}</span>
+                    <button class="btn-primary" onclick="addToCart('${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        `;
+        productGrid.appendChild(productCard);
+    });
+    
+    // Reinitialize scroll animations for new elements
+    initScrollAnimations();
+}
+
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
@@ -170,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initSmoothScroll();
     updateCartUI();
+    loadProductsFromJSON();
 });
 
 // Close cart on escape key
