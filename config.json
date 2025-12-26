@@ -2,5 +2,6 @@
   "wolt_url": "YOUR_WOLT_RESTAURANT_URL_HERE",
   "output_file": "products.json",
   "check_interval_minutes": 5,
-  "log_file": "crawler.log"
+  "log_file": "crawler.log",
+  "vercel_deploy_hook": "YOUR_VERCEL_DEPLOY_HOOK_URL_HERE"
 }

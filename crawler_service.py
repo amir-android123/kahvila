@@ -1,6 +1,8 @@
 import schedule
 import time
 import logging
+import json
+import os
 from wolt_crawler import WoltCrawler
 from datetime import datetime
 
@@ -13,8 +15,8 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-
-class CrawlerService:
+, vercel_deploy_hook=None):
+        self.crawler = WoltCrawler(wolt_url, output_file, vercel_deploy_hook=vercel_deploy_hook
     def __init__(self, wolt_url, output_file='products.json'):
         self.crawler = WoltCrawler(wolt_url, output_file)
         
@@ -47,15 +49,29 @@ class CrawlerService:
 
 
 if __name__ == "__main__":
-    # Configuration
-    WOLT_URL = "YOUR_WOLT_RESTAURANT_URL_HERE"  # Replace with your Wolt URL
-    OUTPUT_FILE = "products.json"
-    CHECK_INTERVAL = 5  # Minutes between checks
+    # Load configuration
+    config_file = 'config.json'
+    
+    if os.path.exists(config_file):
+        with open(config_file, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        WOLT_URL = config.get('wolt_url', 'YOUR_WOLT_RESTAURANT_URL_HERE')
+        OUTPUT_FILE = config.get('output_file', 'products.json')
+        CHECK_INTERVAL = config.get('check_interval_minutes', 5)
+        VERCEL_DEPLOY_HOOK = config.get('vercel_deploy_hook', None)
+    else:
+        WOLT_URL = "YOUR_WOLT_RESTAURANT_URL_HERE"
+        OUTPUT_FILE = "products.json"
+        CHECK_INTERVAL = 5
+        VERCEL_DEPLOY_HOOK = None
     
     if WOLT_URL == "YOUR_WOLT_RESTAURANT_URL_HERE":
-        print("\n⚠ WARNING: Please update WOLT_URL in the script!")
-        print("Edit crawler_service.py and set your Wolt restaurant URL\n")
+        print("\n⚠ WARNING: Please update your config.json file!")
+        print("Set your Wolt restaurant URL in config.json\n")
         exit(1)
     
-    service = CrawlerService(WOLT_URL, OUTPUT_FILE)
+    logging.info(f"Website: https://kahvila-ochre.vercel.app/")
+    logging.info(f"Vercel Deploy: {'Enabled' if VERCEL_DEPLOY_HOOK else 'Disabled'}")
+    
+    service = CrawlerService(WOLT_URL, OUTPUT_FILE, VERCEL_DEPLOY_HOOK)
     service.run(CHECK_INTERVAL)

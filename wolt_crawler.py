@@ -5,9 +5,10 @@ import time
 import os
 from datetime import datetime
 import hashlib
+import subprocess
 
 class WoltCrawler:
-    def __init__(self, wolt_url, output_file='products.json', check_interval=300):
+    def __init__(self, wolt_url, output_file='products.json', check_interval=300, vercel_deploy_hook=None):
         """
         Initialize the Wolt crawler
         
@@ -15,10 +16,12 @@ class WoltCrawler:
             wolt_url: Your Wolt restaurant/store URL
             output_file: Path to the JSON file that stores products
             check_interval: Seconds between checks (default 5 minutes)
+            vercel_deploy_hook: Vercel Deploy Hook URL (optional)
         """
         self.wolt_url = wolt_url
         self.output_file = output_file
         self.check_interval = check_interval
+        self.vercel_deploy_hook = vercel_deploy_hook
         self.last_hash = None
         
     def fetch_wolt_page(self):
@@ -88,7 +91,41 @@ class WoltCrawler:
                 json.dump(products, f, indent=2, ensure_ascii=False)
             print(f"✓ Saved {len(products)} products to {self.output_file}")
             return True
+        except Exception
+    
+    def trigger_vercel_deployment(self):
+        """Trigger Vercel deployment via Deploy Hook"""
+        if not self.vercel_deploy_hook:
+            return False
+        
+        try:
+            print("🚀 Triggering Vercel deployment...")
+            response = requests.post(self.vercel_deploy_hook)
+            if response.status_code in [200, 201]:
+                print("✓ Vercel deployment triggered successfully!")
+                return True
+            else:
+                print(f"✗ Vercel deployment failed: {response.status_code}")
+                return False
         except Exception as e:
+            print(f"✗ Error triggering Vercel deployment: {e}")
+            return False
+    
+    def git_commit_and_push(self):
+        """Commit and push changes to GitHub"""
+        try:
+            print("📤 Committing and pushing to GitHub...")
+            subprocess.run(['git', 'add', self.output_file], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
+            subprocess.run(['git', 'commit', '-m', f'Auto-update products - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
+            subprocess.run(['git', 'push', 'origin', 'main'], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
+            print("✓ Changes pushed to GitHub!")
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"✗ Git operation failed: {e}")
+            return False
+        except Exception as e:
+            print(f"✗ Error with git: {e}")
+            return False as e:
             print(f"Error saving products: {e}")
             return False
     
@@ -108,6 +145,12 @@ class WoltCrawler:
         
         html_content = self.fetch_wolt_page()
         if not html_content:
+            
+            # Push to GitHub and trigger Vercel deployment
+            if self.git_commit_and_push():
+                time.sleep(2)  # Wait a moment before triggering deployment
+                self.trigger_vercel_deployment()
+            
             print("✗ Failed to fetch page")
             return False
         
@@ -128,24 +171,41 @@ class WoltCrawler:
         if content_hash != self.last_hash:
             # Content changed
             old_products = self.load_existing_products()
-            old_names = {p['name'] for p in old_products}
-            new_names = {p['name'] for p in products}
-            
-            added = new_names - old_names
-            removed = old_names - new_names
-            
-            if added:
-                print(f"✓ New items added: {', '.join(added)}")
-            if removed:
-                print(f"✓ Items removed: {', '.join(removed)}")
-            
-            self.last_hash = content_hash
-            self.save_products(products)
-            print(f"✓ Updated! Total products: {len(products)}")
-            return True
-        else:
-            print("○ No changes detected")
-            return False
+      Load configuration
+    config_file = 'config.json'
+    
+    if os.path.exists(config_file):
+        with open(config_file, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        WOLT_URL = config.get('wolt_url', 'YOUR_WOLT_RESTAURANT_URL_HERE')
+        OUTPUT_FILE = config.get('output_file', 'products.json')
+        CHECK_INTERVAL = config.get('check_interval_minutes', 5) * 60  # Convert to seconds
+        VERCEL_DEPLOY_HOOK = config.get('vercel_deploy_hook', None)
+    else:
+        # Fallback to hardcoded values
+        WOLT_URL = "YOUR_WOLT_RESTAURANT_URL_HERE"
+        OUTPUT_FILE = "products.json"
+        CHECK_INTERVAL = 300
+        VERCEL_DEPLOY_HOOK = None
+    
+    print("=" * 60)
+    print("Wolt Crawler - Automatic Product Monitor with Vercel Deploy")
+    print("=" * 60)
+    
+    if WOLT_URL == "YOUR_WOLT_RESTAURANT_URL_HERE":
+        print("\n⚠ WARNING: Please update your config.json file!")
+        print("Set your Wolt restaurant URL in config.json\n")
+        exit(1)
+    
+    print(f"Website: https://kahvila-ochre.vercel.app/")
+    print(f"Vercel Deploy: {'Enabled ✓' if VERCEL_DEPLOY_HOOK else 'Disabled ✗'}")
+    print()
+    
+    crawler = WoltCrawler(
+        wolt_url=WOLT_URL,
+        output_file=OUTPUT_FILE,
+        check_interval=CHECK_INTERVAL,
+        vercel_deploy_hook=VERCEL_DEPLOY_HOOK
     
     def run_once(self):
         """Run the crawler once"""
