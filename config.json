@@ -1,5 +1,5 @@
 {
-  "wolt_url": "YOUR_WOLT_RESTAURANT_URL_HERE",
+  "wolt_url": "https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon",
   "output_file": "products.json",
   "check_interval_minutes": 5,
   "log_file": "crawler.log",
