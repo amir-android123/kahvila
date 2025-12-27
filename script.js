@@ -11,6 +11,11 @@ const translations = {
         cartEmpty: 'Your cart is empty',
         addedToCart: 'added to cart!',
         total: 'Total:'
+    },
+    sv: {
+        cartEmpty: 'Din kundvagn är tom',
+        addedToCart: 'tillagd i kundvagnen!',
+        total: 'Totalt:'
     }
 };
 
@@ -30,7 +35,7 @@ function setLanguage(lang) {
     });
     
     // Update all elements with data-lang attributes
-    document.querySelectorAll('[data-lang-fi], [data-lang-en]').forEach(el => {
+    document.querySelectorAll('[data-lang-fi], [data-lang-en], [data-lang-sv]').forEach(el => {
         const text = el.getAttribute(`data-lang-${lang}`);
         if (text) {
             el.innerHTML = text;
@@ -38,9 +43,13 @@ function setLanguage(lang) {
     });
     
     // Update page title
-    document.title = lang === 'fi' 
-        ? 'Kahvila Bon Bon - Aito italialainen kahvila Helsingissä'
-        : 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
+    if (lang === 'fi') {
+        document.title = 'Kahvila Bon Bon - Aito italialainen kahvila Helsingissä';
+    } else if (lang === 'sv') {
+        document.title = 'Kahvila Bon Bon - Autentiskt italienskt café i Helsingfors';
+    } else {
+        document.title = 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
+    }
     
     // Update cart UI with current language
     updateCartUI();
