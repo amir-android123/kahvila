@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahvila Bon Bon - Authentic Italian Café in Helsinki</title>
+    <title>Kahvila Bon Bon - Aito Italialainen Kahvila Helsingissä</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,13 +22,17 @@
                 <span class="logo-text">Bon Bon</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#cakes">Cakes</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" data-lang-fi="Etusivu" data-lang-en="Home">Etusivu</a></li>
+                <li><a href="#cakes" data-lang-fi="Kakut" data-lang-en="Cakes">Kakut</a></li>
+                <li><a href="#menu" data-lang-fi="Menu" data-lang-en="Menu">Menu</a></li>
+                <li><a href="#about" data-lang-fi="Meistä" data-lang-en="About">Meistä</a></li>
+                <li><a href="#contact" data-lang-fi="Yhteystiedot" data-lang-en="Contact">Yhteystiedot</a></li>
             </ul>
             <div class="nav-actions">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="fi" onclick="setLanguage('fi')" title="Suomi">FI</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English">EN</button>
+                </div>
                 <button class="cart-btn" onclick="openCart()">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
@@ -64,27 +68,27 @@
         </div>
         <div class="hero-content">
             <div class="hero-badge-container">
-                <span class="hero-badge animate-pulse">🇮🇹 Authentic Italian Café in Helsinki</span>
+                <span class="hero-badge animate-pulse" data-lang-fi="🇮🇹 Aito Italialainen Kahvila Helsingissä" data-lang-en="🇮🇹 Authentic Italian Café in Helsinki">🇮🇹 Aito Italialainen Kahvila Helsingissä</span>
             </div>
             <h1 class="hero-title">
                 <span class="title-line title-accent">Bon Bon</span>
                 <span class="title-line">Kahvila</span>
             </h1>
-            <p class="hero-subtitle">Where Italian passion meets Finnish elegance — discover the taste of <em>la dolce vita</em></p>
+            <p class="hero-subtitle" data-lang-fi="Missä italialainen intohimo kohtaa suomalaisen eleganssin — löydä <em>la dolce vitan</em> maku" data-lang-en="Where Italian passion meets Finnish elegance — discover the taste of <em>la dolce vita</em>">Missä italialainen intohimo kohtaa suomalaisen eleganssin — löydä <em>la dolce vitan</em> maku</p>
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number">45+</span>
-                    <span class="stat-label">Italian Delights</span>
+                    <span class="stat-label" data-lang-fi="Italialaista Herkkua" data-lang-en="Italian Delights">Italialaista Herkkua</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <span class="stat-number">100%</span>
-                    <span class="stat-label">Italian Recipes</span>
+                    <span class="stat-label" data-lang-fi="Italialaiset Reseptit" data-lang-en="Italian Recipes">Italialaiset Reseptit</span>
                 </div>
             </div>
             <div class="hero-buttons">
-                <a href="#menu" class="btn btn-primary btn-glow"><i class="fas fa-utensils"></i> Explore Menu</a>
-                <a href="#about" class="btn btn-secondary"><i class="fas fa-heart"></i> Our Story</a>
+                <a href="#menu" class="btn btn-primary btn-glow" data-lang-fi="<i class='fas fa-utensils'></i> Tutustu Menuun" data-lang-en="<i class='fas fa-utensils'></i> Explore Menu"><i class="fas fa-utensils"></i> Tutustu Menuun</a>
+                <a href="#about" class="btn btn-secondary" data-lang-fi="<i class='fas fa-heart'></i> Tarinamme" data-lang-en="<i class='fas fa-heart'></i> Our Story"><i class="fas fa-heart"></i> Tarinamme</a>
             </div>
         </div>
     </section>
@@ -94,20 +98,20 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">🎂 Dolci Italiani</span>
-                <h2 class="section-title">Our Signature Cakes</h2>
-                <p class="section-subtitle">Authentic Italian desserts crafted with passion & tradition</p>
+                <h2 class="section-title" data-lang-fi="Suosikkikakkumme" data-lang-en="Our Signature Cakes">Suosikkikakkumme</h2>
+                <p class="section-subtitle" data-lang-fi="Aitoja italialaisia jälkiruokia intohimolla ja perinteillä" data-lang-en="Authentic Italian desserts crafted with passion & tradition">Aitoja italialaisia jälkiruokia intohimolla ja perinteillä</p>
             </div>
             <div class="product-grid">
                 <!-- Chocolate Trilogy -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/68f8acc1fc9f2c59857d9112" alt="Chocolate Trilogy">
-                        <span class="product-badge">Popular</span>
+                        <span class="product-badge" data-lang-fi="Suosittu" data-lang-en="Popular">Suosittu</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Chocolate Trilogy</h3>
-                        <p class="product-description">Layered with dark, milk, and white chocolate mousse on a chocolate sponge base</p>
+                        <p class="product-description" data-lang-fi="Kerroksittain tummaa, maito- ja valkosuklaamoussea suklaakakkupohjalla" data-lang-en="Layered with dark, milk, and white chocolate mousse on a chocolate sponge base">Kerroksittain tummaa, maito- ja valkosuklaamoussea suklaakakkupohjalla</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Chocolate Trilogy', 7.50)">
@@ -121,12 +125,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/694129302779142902e32866" alt="Tiramisu">
-                        <span class="product-badge">Best Seller</span>
+                        <span class="product-badge" data-lang-fi="Myydyin" data-lang-en="Best Seller">Myydyin</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Tiramisu</h3>
-                        <p class="product-description">Classic Italian tiramisu with espresso-soaked ladyfingers and mascarpone cream</p>
+                        <p class="product-description" data-lang-fi="Klassinen italialainen tiramisu espressoon kastettujen savoiardi-keksien ja mascarponekreemin kanssa" data-lang-en="Classic Italian tiramisu with espresso-soaked ladyfingers and mascarpone cream">Klassinen italialainen tiramisu espressoon kastettujen savoiardi-keksien ja mascarponekreemin kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Tiramisu', 7.50)">
@@ -140,12 +144,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/68f8b9a994476edc306e9718" alt="Pistachio and Ricotta">
-                        <span class="product-badge">Chef's Choice</span>
+                        <span class="product-badge" data-lang-fi="Kokin Valinta" data-lang-en="Chef's Choice">Kokin Valinta</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Pistachio & Ricotta</h3>
-                        <p class="product-description">Creamy ricotta filling with premium Sicilian pistachios</p>
+                        <p class="product-description" data-lang-fi="Kermainen ricottatäyte laadukkailla sizilialaisilla pistaaseilla" data-lang-en="Creamy ricotta filling with premium Sicilian pistachios">Kermainen ricottatäyte laadukkailla sizilialaisilla pistaaseilla</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Pistachio & Ricotta', 7.50)">
@@ -161,9 +165,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8baa894476edc306e9797" alt="Pears and Ricotta">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Pears & Ricotta</h3>
-                        <p class="product-description">Sweet pears with creamy ricotta in a delicate pastry</p>
+                        <p class="product-description" data-lang-fi="Makeita päärynöitä kermaisen ricottan kanssa herkässä leivonnaisessa" data-lang-en="Sweet pears with creamy ricotta in a delicate pastry">Makeita päärynöitä kermaisen ricottan kanssa herkässä leivonnaisessa</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Pears & Ricotta', 7.50)">
@@ -179,9 +183,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b5c8fc9f2c59857d97b7" alt="Torta della Nonna">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Torta della Nonna</h3>
-                        <p class="product-description">Traditional Italian cake with lemon custard and pine nuts</p>
+                        <p class="product-description" data-lang-fi="Perinteinen italialainen kakku sitruunakermalla ja pinjansiemenillä" data-lang-en="Traditional Italian cake with lemon custard and pine nuts">Perinteinen italialainen kakku sitruunakermalla ja pinjansiemenillä</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Torta della Nonna', 7.50)">
@@ -197,9 +201,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b84e94476edc306e9682" alt="Suklaa Appelsiinikakku">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
-                        <h3 class="product-name">Chocolate Orange Cake</h3>
-                        <p class="product-description">Rich chocolate cake with zesty orange flavor</p>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
+                        <h3 class="product-name" data-lang-fi="Suklaa-Appelsiinikakku" data-lang-en="Chocolate Orange Cake">Suklaa-Appelsiinikakku</h3>
+                        <p class="product-description" data-lang-fi="Täyteläinen suklaakakku raikkaan appelsiinin maulla" data-lang-en="Rich chocolate cake with zesty orange flavor">Täyteläinen suklaakakku raikkaan appelsiinin maulla</p>
                         <div class="product-footer">
                             <span class="product-price">€7.20</span>
                             <button class="add-to-cart" onclick="addToCart('Chocolate Orange Cake', 7.20)">
@@ -215,9 +219,9 @@
                         <img src="https://imageproxy.wolt.com/assets/69099f4a118147ef0382306e" alt="Red Velvet">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Red Velvet</h3>
-                        <p class="product-description">Classic red velvet with cream cheese frosting</p>
+                        <p class="product-description" data-lang-fi="Klassinen red velvet tuorejuustokuorrutteella" data-lang-en="Classic red velvet with cream cheese frosting">Klassinen red velvet tuorejuustokuorrutteella</p>
                         <div class="product-footer">
                             <span class="product-price">€7.20</span>
                             <button class="add-to-cart" onclick="addToCart('Red Velvet', 7.20)">
@@ -233,9 +237,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6934011feaef39a1ab1ea9ff" alt="Chocolate Mousse">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
-                        <h3 class="product-name">Chocolate Mousse</h3>
-                        <p class="product-description">Light and airy chocolate mousse cake</p>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
+                        <h3 class="product-name" data-lang-fi="Suklaavaahto" data-lang-en="Chocolate Mousse">Suklaavaahto</h3>
+                        <p class="product-description" data-lang-fi="Kevyt ja ilmava suklaamoussekakku" data-lang-en="Light and airy chocolate mousse cake">Kevyt ja ilmava suklaamoussekakku</p>
                         <div class="product-footer">
                             <span class="product-price">€7.20</span>
                             <button class="add-to-cart" onclick="addToCart('Chocolate Mousse', 7.20)">
@@ -251,9 +255,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8a7b2fc9f2c59857d8ec3" alt="Cake Bindi Berries">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
-                        <h3 class="product-name">Cake Bindi Berries</h3>
-                        <p class="product-description">Crisp cake base with cream, fresh berries, and a light glaze</p>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
+                        <h3 class="product-name" data-lang-fi="Marjakakku Bindi" data-lang-en="Cake Bindi Berries">Marjakakku Bindi</h3>
+                        <p class="product-description" data-lang-fi="Rapea kakkupohja kermalla, tuoreilla marjoilla ja kevyellä kuorrutteella" data-lang-en="Crisp cake base with cream, fresh berries, and a light glaze">Rapea kakkupohja kermalla, tuoreilla marjoilla ja kevyellä kuorrutteella</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Cake Bindi Berries', 7.50)">
@@ -269,9 +273,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8bb6afc9f2c59857d9b8b" alt="Gocce Chantilly">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Cake</span>
+                        <span class="product-category" data-lang-fi="Kakku" data-lang-en="Cake">Kakku</span>
                         <h3 class="product-name">Gocce Chantilly</h3>
-                        <p class="product-description">Delicate pastry filled with Chantilly cream</p>
+                        <p class="product-description" data-lang-fi="Herkkä leivonnainen Chantilly-kermalla" data-lang-en="Delicate pastry filled with Chantilly cream">Herkkä leivonnainen Chantilly-kermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€3.50</span>
                             <button class="add-to-cart" onclick="addToCart('Gocce Chantilly', 3.50)">
@@ -290,8 +294,8 @@
             <!-- Éclairs -->
             <div class="section-header">
                 <span class="section-badge">🥧 Éclairs</span>
-                <h2 class="section-title">Italian Éclairs</h2>
-                <p class="section-subtitle">Cream-filled delights</p>
+                <h2 class="section-title" data-lang-fi="Italialaiset Tuulihatut" data-lang-en="Italian Éclairs">Italialaiset Tuulihatut</h2>
+                <p class="section-subtitle" data-lang-fi="Kermalla täytettyjä herkkuja" data-lang-en="Cream-filled delights">Kermalla täytettyjä herkkuja</p>
             </div>
             <div class="product-grid">
                 <!-- Sbrodolone Chantilly -->
@@ -300,9 +304,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8adba325f852e1f7409cc" alt="Sbrodolone Chantilly">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Éclair</span>
+                        <span class="product-category" data-lang-fi="Tuulihattu" data-lang-en="Éclair">Tuulihattu</span>
                         <h3 class="product-name">Sbrodolone Chantilly</h3>
-                        <p class="product-description">Cream puff pastry filled with Chantilly cream</p>
+                        <p class="product-description" data-lang-fi="Tuulihattu Chantilly-kermalla" data-lang-en="Cream puff pastry filled with Chantilly cream">Tuulihattu Chantilly-kermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€5.50</span>
                             <button class="add-to-cart" onclick="addToCart('Sbrodolone Chantilly', 5.50)">
@@ -318,9 +322,9 @@
                         <img src="https://imageproxy.wolt.com/assets/69099f4c118147ef0382306f" alt="Sbrodoloni Bigusto">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Éclair</span>
+                        <span class="product-category" data-lang-fi="Tuulihattu" data-lang-en="Éclair">Tuulihattu</span>
                         <h3 class="product-name">Sbrodoloni Bigusto</h3>
-                        <p class="product-description">Cream puff with Chantilly and chocolate cream</p>
+                        <p class="product-description" data-lang-fi="Tuulihattu Chantilly- ja suklaakermalla" data-lang-en="Cream puff with Chantilly and chocolate cream">Tuulihattu Chantilly- ja suklaakermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€6.00</span>
                             <button class="add-to-cart" onclick="addToCart('Sbrodoloni Bigusto', 6.00)">
@@ -336,9 +340,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8ae31fc9f2c59857d91bb" alt="Sbrodoloni Pistacchio">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Éclair</span>
+                        <span class="product-category" data-lang-fi="Tuulihattu" data-lang-en="Éclair">Tuulihattu</span>
                         <h3 class="product-name">Sbrodoloni Pistacchio</h3>
-                        <p class="product-description">Cream puff filled with pistachio cream</p>
+                        <p class="product-description" data-lang-fi="Tuulihattu pistaasikermalla" data-lang-en="Cream puff filled with pistachio cream">Tuulihattu pistaasikermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€6.50</span>
                             <button class="add-to-cart" onclick="addToCart('Sbrodoloni Pistacchio', 6.50)">
@@ -352,8 +356,8 @@
             <!-- Filled Pastries -->
             <div class="section-header" style="margin-top: 4rem;">
                 <span class="section-badge">🥐 Pastries</span>
-                <h2 class="section-title">Filled Pastries</h2>
-                <p class="section-subtitle">Traditional Italian filled pastries</p>
+                <h2 class="section-title" data-lang-fi="Täytetyt Leivonnaiset" data-lang-en="Filled Pastries">Täytetyt Leivonnaiset</h2>
+                <p class="section-subtitle" data-lang-fi="Perinteiset italialaiset täytetyt leivonnaiset" data-lang-en="Traditional Italian filled pastries">Perinteiset italialaiset täytetyt leivonnaiset</p>
             </div>
             <div class="product-grid">
                 <!-- Tiramisu Cup -->
@@ -362,9 +366,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b6cf325f852e1f740ff9" alt="Tiramisu Cup">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
-                        <h3 class="product-name">Tiramisu Cup</h3>
-                        <p class="product-description">Individual portion of our famous tiramisu</p>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
+                        <h3 class="product-name" data-lang-fi="Tiramisu Kuppi" data-lang-en="Tiramisu Cup">Tiramisu Kuppi</h3>
+                        <p class="product-description" data-lang-fi="Yksittäisannos kuuluisasta tiramisustamme" data-lang-en="Individual portion of our famous tiramisu">Yksittäisannos kuuluisasta tiramisustamme</p>
                         <div class="product-footer">
                             <span class="product-price">€7.00</span>
                             <button class="add-to-cart" onclick="addToCart('Tiramisu Cup', 7.00)">
@@ -380,9 +384,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8ab8394476edc306e8fec" alt="Maritozzo con Panna">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Maritozzo con Panna</h3>
-                        <p class="product-description">Soft brioche bun filled with fresh whipped cream</p>
+                        <p class="product-description" data-lang-fi="Pehmeä briossipulla tuoreella kermavaahdolla" data-lang-en="Soft brioche bun filled with fresh whipped cream">Pehmeä briossipulla tuoreella kermavaahdolla</p>
                         <div class="product-footer">
                             <span class="product-price">€4.00</span>
                             <button class="add-to-cart" onclick="addToCart('Maritozzo con Panna', 4.00)">
@@ -398,9 +402,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8ba4394476edc306e977e" alt="Maritozzo Pistacchio">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Maritozzo Pistacchio</h3>
-                        <p class="product-description">Soft brioche bun with pistachio cream</p>
+                        <p class="product-description" data-lang-fi="Pehmeä briossipulla pistaasikermalla" data-lang-en="Soft brioche bun with pistachio cream">Pehmeä briossipulla pistaasikermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€4.00</span>
                             <button class="add-to-cart" onclick="addToCart('Maritozzo Pistacchio', 4.00)">
@@ -416,9 +420,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b1d9fc9f2c59857d9627" alt="Sospiri Cioccolato">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Sospiri Cioccolato</h3>
-                        <p class="product-description">Delicate pastry with chocolate filling</p>
+                        <p class="product-description" data-lang-fi="Herkkä leivonnainen suklaatäytteellä" data-lang-en="Delicate pastry with chocolate filling">Herkkä leivonnainen suklaatäytteellä</p>
                         <div class="product-footer">
                             <span class="product-price">€4.00</span>
                             <button class="add-to-cart" onclick="addToCart('Sospiri Cioccolato', 4.00)">
@@ -434,9 +438,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b2a4fc9f2c59857d96ba" alt="Sospiri Pistacchio">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Sospiri Pistacchio</h3>
-                        <p class="product-description">Delicate pastry with pistachio filling</p>
+                        <p class="product-description" data-lang-fi="Herkkä leivonnainen pistaasitäytteellä" data-lang-en="Delicate pastry with pistachio filling">Herkkä leivonnainen pistaasitäytteellä</p>
                         <div class="product-footer">
                             <span class="product-price">€4.00</span>
                             <button class="add-to-cart" onclick="addToCart('Sospiri Pistacchio', 4.00)">
@@ -452,9 +456,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8b308325f852e1f740dc3" alt="Zeppole Mignion">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Zeppole Mignion</h3>
-                        <p class="product-description">Small fried dough balls dusted with sugar</p>
+                        <p class="product-description" data-lang-fi="Pieniä uppopaistettuja taikinpalloja sokerilla" data-lang-en="Small fried dough balls dusted with sugar">Pieniä uppopaistettuja taikinpalloja sokerilla</p>
                         <div class="product-footer">
                             <span class="product-price">€2.50</span>
                             <button class="add-to-cart" onclick="addToCart('Zeppole Mignion', 2.50)">
@@ -470,9 +474,9 @@
                         <img src="https://imageproxy.wolt.com/assets/68f8ad6e325f852e1f740992" alt="Gocce Bigusto">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
                         <h3 class="product-name">Gocce Bigusto</h3>
-                        <p class="product-description">Two-flavor cream-filled pastry drops</p>
+                        <p class="product-description" data-lang-fi="Kahden maun kermatäytteiset leivospisarat" data-lang-en="Two-flavor cream-filled pastry drops">Kahden maun kermatäytteiset leivospisarat</p>
                         <div class="product-footer">
                             <span class="product-price">€3.50</span>
                             <button class="add-to-cart" onclick="addToCart('Gocce Bigusto', 3.50)">
@@ -488,9 +492,9 @@
                         <img src="https://imageproxy.wolt.com/assets/69099f47118147ef0382306d" alt="Tiramisu Pistachio Cup">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Pastry</span>
-                        <h3 class="product-name">Tiramisu Pistachio Cup</h3>
-                        <p class="product-description">Tiramisu with pistachio twist in a cup</p>
+                        <span class="product-category" data-lang-fi="Leivonnainen" data-lang-en="Pastry">Leivonnainen</span>
+                        <h3 class="product-name" data-lang-fi="Tiramisu Pistaasi Kuppi" data-lang-en="Tiramisu Pistachio Cup">Tiramisu Pistaasi Kuppi</h3>
+                        <p class="product-description" data-lang-fi="Tiramisu pistaasivivähteellä kupissa" data-lang-en="Tiramisu with pistachio twist in a cup">Tiramisu pistaasivivähteellä kupissa</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Tiramisu Pistachio Cup', 7.50)">
@@ -504,8 +508,8 @@
             <!-- Cannoli -->
             <div class="section-header" style="margin-top: 4rem;">
                 <span class="section-badge">🍬 Cannoli</span>
-                <h2 class="section-title">Sicilian Cannoli</h2>
-                <p class="section-subtitle">Crispy shells with creamy fillings</p>
+                <h2 class="section-title" data-lang-fi="Sizilialaiset Cannolit" data-lang-en="Sicilian Cannoli">Sizilialaiset Cannolit</h2>
+                <p class="section-subtitle" data-lang-fi="Rapeita kuoria kermaisilla täytteillä" data-lang-en="Crispy shells with creamy fillings">Rapeita kuoria kermaisilla täytteillä</p>
             </div>
             <div class="product-grid">
                 <!-- Cannolo Chantilly -->
@@ -516,7 +520,7 @@
                     <div class="product-info">
                         <span class="product-category">Cannoli</span>
                         <h3 class="product-name">Cannolo Chantilly</h3>
-                        <p class="product-description">Crispy shell filled with Chantilly cream</p>
+                        <p class="product-description" data-lang-fi="Rapea kuori Chantilly-kermalla" data-lang-en="Crispy shell filled with Chantilly cream">Rapea kuori Chantilly-kermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Cannolo Chantilly', 4.50)">
@@ -534,7 +538,7 @@
                     <div class="product-info">
                         <span class="product-category">Cannoli</span>
                         <h3 class="product-name">Cannolo Bigusto</h3>
-                        <p class="product-description">Two-flavor cannoli with mixed cream</p>
+                        <p class="product-description" data-lang-fi="Kahden maun cannoli sekoitetulla kermalla" data-lang-en="Two-flavor cannoli with mixed cream">Kahden maun cannoli sekoitetulla kermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Cannolo Bigusto', 4.50)">
@@ -552,7 +556,7 @@
                     <div class="product-info">
                         <span class="product-category">Cannoli</span>
                         <h3 class="product-name">Cannolo Nocciola</h3>
-                        <p class="product-description">Crispy shell with hazelnut cream</p>
+                        <p class="product-description" data-lang-fi="Rapea kuori hasselpähkinäkermalla" data-lang-en="Crispy shell with hazelnut cream">Rapea kuori hasselpähkinäkermalla</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Cannolo Nocciola', 4.50)">
@@ -566,8 +570,8 @@
             <!-- Croissants -->
             <div class="section-header" style="margin-top: 4rem;">
                 <span class="section-badge">🥐 Croissants</span>
-                <h2 class="section-title">Fresh Croissants</h2>
-                <p class="section-subtitle">Buttery flaky goodness</p>
+                <h2 class="section-title" data-lang-fi="Tuoreet Croissantit" data-lang-en="Fresh Croissants">Tuoreet Croissantit</h2>
+                <p class="section-subtitle" data-lang-fi="Voisia ja rapea herkku" data-lang-en="Buttery flaky goodness">Voisia ja rapea herkku</p>
             </div>
             <div class="product-grid">
                 <!-- Croissant & Coffee -->
@@ -576,9 +580,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129269bd35c2271341cf8" alt="Croissant & Coffee">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Combo</span>
-                        <h3 class="product-name">Croissant & Coffee</h3>
-                        <p class="product-description">Fresh croissant with your choice of coffee</p>
+                        <span class="product-category" data-lang-fi="Yhdistelmä" data-lang-en="Combo">Yhdistelmä</span>
+                        <h3 class="product-name" data-lang-fi="Croissant & Kahvi" data-lang-en="Croissant & Coffee">Croissant & Kahvi</h3>
+                        <p class="product-description" data-lang-fi="Tuore croissant valitsemasi kahvin kanssa" data-lang-en="Fresh croissant with your choice of coffee">Tuore croissant valitsemasi kahvin kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€5.50</span>
                             <button class="add-to-cart" onclick="addToCart('Croissant & Coffee', 5.50)">
@@ -594,9 +598,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129269bd35c2271341cf7" alt="Mozzarella Croissant">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Savory</span>
-                        <h3 class="product-name">Mozzarella Croissant</h3>
-                        <p class="product-description">Croissant filled with melted mozzarella</p>
+                        <span class="product-category" data-lang-fi="Suolainen" data-lang-en="Savory">Suolainen</span>
+                        <h3 class="product-name" data-lang-fi="Mozzarella Croissant" data-lang-en="Mozzarella Croissant">Mozzarella Croissant</h3>
+                        <p class="product-description" data-lang-fi="Croissant sulatetulla mozzarellalla" data-lang-en="Croissant filled with melted mozzarella">Croissant sulatetulla mozzarellalla</p>
                         <div class="product-footer">
                             <span class="product-price">€5.50</span>
                             <button class="add-to-cart" onclick="addToCart('Mozzarella Croissant', 5.50)">
@@ -612,9 +616,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6934a89237f78895f880c855" alt="Croissant & Ice Tea">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Combo</span>
-                        <h3 class="product-name">Croissant & Ice Tea</h3>
-                        <p class="product-description">Fresh croissant with refreshing ice tea</p>
+                        <span class="product-category" data-lang-fi="Yhdistelmä" data-lang-en="Combo">Yhdistelmä</span>
+                        <h3 class="product-name" data-lang-fi="Croissant & Jäätee" data-lang-en="Croissant & Ice Tea">Croissant & Jäätee</h3>
+                        <p class="product-description" data-lang-fi="Tuore croissant virkistävän jääteen kanssa" data-lang-en="Fresh croissant with refreshing ice tea">Tuore croissant virkistävän jääteen kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€10.00</span>
                             <button class="add-to-cart" onclick="addToCart('Croissant & Ice Tea', 10.00)">
@@ -628,8 +632,8 @@
             <!-- Coffee -->
             <div class="section-header" style="margin-top: 4rem;">
                 <span class="section-badge">☕ Coffee</span>
-                <h2 class="section-title">Italian Coffee</h2>
-                <p class="section-subtitle">Authentic Italian espresso and more</p>
+                <h2 class="section-title" data-lang-fi="Italialainen Kahvi" data-lang-en="Italian Coffee">Italialainen Kahvi</h2>
+                <p class="section-subtitle" data-lang-fi="Aito italialainen espresso ja muuta" data-lang-en="Authentic Italian espresso and more">Aito italialainen espresso ja muuta</p>
             </div>
             <div class="product-grid">
                 <!-- Espresso -->
@@ -638,9 +642,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129299bd35c2271341cfb" alt="Espresso">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Coffee</span>
+                        <span class="product-category" data-lang-fi="Kahvi" data-lang-en="Coffee">Kahvi</span>
                         <h3 class="product-name">Espresso</h3>
-                        <p class="product-description">Classic Italian single shot espresso</p>
+                        <p class="product-description" data-lang-fi="Klassinen italialainen yksittäinen espresso" data-lang-en="Classic Italian single shot espresso">Klassinen italialainen yksittäinen espresso</p>
                         <div class="product-footer">
                             <span class="product-price">€4.00</span>
                             <button class="add-to-cart" onclick="addToCart('Espresso', 4.00)">
@@ -656,9 +660,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6941292a9bd35c2271341cfc" alt="Double Espresso">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Coffee</span>
-                        <h3 class="product-name">Double Espresso</h3>
-                        <p class="product-description">Double shot of rich espresso</p>
+                        <span class="product-category" data-lang-fi="Kahvi" data-lang-en="Coffee">Kahvi</span>
+                        <h3 class="product-name" data-lang-fi="Tupla Espresso" data-lang-en="Double Espresso">Tupla Espresso</h3>
+                        <p class="product-description" data-lang-fi="Tuplashotti täyteläistä espressoa" data-lang-en="Double shot of rich espresso">Tuplashotti täyteläistä espressoa</p>
                         <div class="product-footer">
                             <span class="product-price">€5.50</span>
                             <button class="add-to-cart" onclick="addToCart('Double Espresso', 5.50)">
@@ -674,9 +678,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129249bd35c2271341cf4" alt="Cappuccino">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Coffee</span>
+                        <span class="product-category" data-lang-fi="Kahvi" data-lang-en="Coffee">Kahvi</span>
                         <h3 class="product-name">Cappuccino</h3>
-                        <p class="product-description">Espresso with steamed milk foam</p>
+                        <p class="product-description" data-lang-fi="Espresso höyrytetyllä maitovaahdolla" data-lang-en="Espresso with steamed milk foam">Espresso höyrytetyllä maitovaahdolla</p>
                         <div class="product-footer">
                             <span class="product-price">€6.00</span>
                             <button class="add-to-cart" onclick="addToCart('Cappuccino', 6.00)">
@@ -692,9 +696,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6941292a9bd35c2271341cfd" alt="Coffee Latte">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Coffee</span>
-                        <h3 class="product-name">Coffee Latte</h3>
-                        <p class="product-description">Espresso with steamed milk</p>
+                        <span class="product-category" data-lang-fi="Kahvi" data-lang-en="Coffee">Kahvi</span>
+                        <h3 class="product-name" data-lang-fi="Café Latte" data-lang-en="Coffee Latte">Café Latte</h3>
+                        <p class="product-description" data-lang-fi="Espresso höyrytetyllä maidolla" data-lang-en="Espresso with steamed milk">Espresso höyrytetyllä maidolla</p>
                         <div class="product-footer">
                             <span class="product-price">€6.20</span>
                             <button class="add-to-cart" onclick="addToCart('Coffee Latte', 6.20)">
@@ -710,9 +714,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129279bd35c2271341cf9" alt="Hot Chocolate">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Hot Drink</span>
-                        <h3 class="product-name">Hot Chocolate</h3>
-                        <p class="product-description">Rich and creamy hot chocolate</p>
+                        <span class="product-category" data-lang-fi="Kuuma Juoma" data-lang-en="Hot Drink">Kuuma Juoma</span>
+                        <h3 class="product-name" data-lang-fi="Kuuma Kaakao" data-lang-en="Hot Chocolate">Kuuma Kaakao</h3>
+                        <p class="product-description" data-lang-fi="Täyteläinen ja kermainen kuuma kaakao" data-lang-en="Rich and creamy hot chocolate">Täyteläinen ja kermainen kuuma kaakao</p>
                         <div class="product-footer">
                             <span class="product-price">€6.00</span>
                             <button class="add-to-cart" onclick="addToCart('Hot Chocolate', 6.00)">
@@ -726,8 +730,8 @@
             <!-- Cold Drinks -->
             <div class="section-header" style="margin-top: 4rem;">
                 <span class="section-badge">🧊 Drinks</span>
-                <h2 class="section-title">Cold Beverages</h2>
-                <p class="section-subtitle">Refreshing drinks</p>
+                <h2 class="section-title" data-lang-fi="Kylmät Juomat" data-lang-en="Cold Beverages">Kylmät Juomat</h2>
+                <p class="section-subtitle" data-lang-fi="Virkistäviä juomia" data-lang-en="Refreshing drinks">Virkistäviä juomia</p>
             </div>
             <div class="product-grid">
                 <!-- Lemon Soda -->
@@ -736,9 +740,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6936b5f36e7972da85919b23" alt="Lemon Soda">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Drink</span>
-                        <h3 class="product-name">Lemon Soda</h3>
-                        <p class="product-description">Refreshing Italian lemon soda</p>
+                        <span class="product-category" data-lang-fi="Juoma" data-lang-en="Drink">Juoma</span>
+                        <h3 class="product-name" data-lang-fi="Sitruunasooda" data-lang-en="Lemon Soda">Sitruunasooda</h3>
+                        <p class="product-description" data-lang-fi="Virkistävä italialainen sitruunasooda" data-lang-en="Refreshing Italian lemon soda">Virkistävä italialainen sitruunasooda</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Lemon Soda', 4.50)">
@@ -754,9 +758,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6936b5f36e7972da85919b24" alt="Orange Soda">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Drink</span>
-                        <h3 class="product-name">Orange Soda</h3>
-                        <p class="product-description">Refreshing Italian orange soda</p>
+                        <span class="product-category" data-lang-fi="Juoma" data-lang-en="Drink">Juoma</span>
+                        <h3 class="product-name" data-lang-fi="Appelsiinisooda" data-lang-en="Orange Soda">Appelsiinisooda</h3>
+                        <p class="product-description" data-lang-fi="Virkistävä italialainen appelsiinisooda" data-lang-en="Refreshing Italian orange soda">Virkistävä italialainen appelsiinisooda</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Orange Soda', 4.50)">
@@ -772,9 +776,9 @@
                         <img src="https://imageproxy.wolt.com/assets/69349d4d7f812b4452a33f11" alt="Peach Ice Tea">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Drink</span>
-                        <h3 class="product-name">Peach Ice Tea</h3>
-                        <p class="product-description">Sweet peach flavored iced tea</p>
+                        <span class="product-category" data-lang-fi="Juoma" data-lang-en="Drink">Juoma</span>
+                        <h3 class="product-name" data-lang-fi="Persikka Jäätee" data-lang-en="Peach Ice Tea">Persikka Jäätee</h3>
+                        <p class="product-description" data-lang-fi="Makea persikanmakuinen jäätee" data-lang-en="Sweet peach flavored iced tea">Makea persikanmakuinen jäätee</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Peach Ice Tea', 4.50)">
@@ -790,9 +794,9 @@
                         <img src="https://imageproxy.wolt.com/assets/6936b5f03bbac3ed7f8334a0" alt="Lemon Ice Tea">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Drink</span>
-                        <h3 class="product-name">Lemon Ice Tea</h3>
-                        <p class="product-description">Refreshing lemon iced tea</p>
+                        <span class="product-category" data-lang-fi="Juoma" data-lang-en="Drink">Juoma</span>
+                        <h3 class="product-name" data-lang-fi="Sitruuna Jäätee" data-lang-en="Lemon Ice Tea">Sitruuna Jäätee</h3>
+                        <p class="product-description" data-lang-fi="Virkistävä sitruunajäätee" data-lang-en="Refreshing lemon iced tea">Virkistävä sitruunajäätee</p>
                         <div class="product-footer">
                             <span class="product-price">€4.50</span>
                             <button class="add-to-cart" onclick="addToCart('Lemon Ice Tea', 4.50)">
@@ -808,9 +812,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129289bd35c2271341cfa" alt="Iced Latte">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Coffee</span>
-                        <h3 class="product-name">Iced Latte</h3>
-                        <p class="product-description">Cold espresso with milk over ice</p>
+                        <span class="product-category" data-lang-fi="Kahvi" data-lang-en="Coffee">Kahvi</span>
+                        <h3 class="product-name" data-lang-fi="Jäälatte" data-lang-en="Iced Latte">Jäälatte</h3>
+                        <p class="product-description" data-lang-fi="Kylmä espresso maidon kanssa jäällä" data-lang-en="Cold espresso with milk over ice">Kylmä espresso maidon kanssa jäällä</p>
                         <div class="product-footer">
                             <span class="product-price">€7.50</span>
                             <button class="add-to-cart" onclick="addToCart('Iced Latte', 7.50)">
@@ -826,9 +830,9 @@
                         <img src="https://imageproxy.wolt.com/assets/694129249bd35c2271341cf5" alt="Matcha Vanilla Latte">
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Specialty</span>
-                        <h3 class="product-name">Matcha Vanilla Latte</h3>
-                        <p class="product-description">Matcha green tea with vanilla and milk</p>
+                        <span class="product-category" data-lang-fi="Erikoisuus" data-lang-en="Specialty">Erikoisuus</span>
+                        <h3 class="product-name" data-lang-fi="Matcha Vanilja Latte" data-lang-en="Matcha Vanilla Latte">Matcha Vanilja Latte</h3>
+                        <p class="product-description" data-lang-fi="Matcha vihreä tee vaniljan ja maidon kanssa" data-lang-en="Matcha green tea with vanilla and milk">Matcha vihreä tee vaniljan ja maidon kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€7.00</span>
                             <button class="add-to-cart" onclick="addToCart('Matcha Vanilla Latte', 7.00)">
@@ -846,8 +850,8 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">🎂 Full Size</span>
-                <h2 class="section-title">Full Size Cakes</h2>
-                <p class="section-subtitle">Perfect for celebrations - frozen, ready to thaw</p>
+                <h2 class="section-title" data-lang-fi="Täysikokoiset Kakut" data-lang-en="Full Size Cakes">Täysikokoiset Kakut</h2>
+                <p class="section-subtitle" data-lang-fi="Täydellisiä juhliin - pakastettuja, sulatettavaksi" data-lang-en="Perfect for celebrations - frozen, ready to thaw">Täydellisiä juhliin - pakastettuja, sulatettavaksi</p>
             </div>
             <div class="product-grid">
                 <!-- Pistachio Full Cake -->
@@ -857,9 +861,9 @@
                         <span class="product-badge">1.1 kg</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Full Cake</span>
-                        <h3 class="product-name">Pistachio & Ricotta Cake</h3>
-                        <p class="product-description">Full size pistachio cake with ricotta cream layers - 1.1 kg frozen</p>
+                        <span class="product-category" data-lang-fi="Täysikokoinen Kakku" data-lang-en="Full Cake">Täysikokoinen Kakku</span>
+                        <h3 class="product-name" data-lang-fi="Pistaasi & Ricotta Kakku" data-lang-en="Pistachio & Ricotta Cake">Pistaasi & Ricotta Kakku</h3>
+                        <p class="product-description" data-lang-fi="Täysikokoinen pistaasikakku ricottakermakerroksin - 1.1 kg pakastettu" data-lang-en="Full size pistachio cake with ricotta cream layers - 1.1 kg frozen">Täysikokoinen pistaasikakku ricottakermakerroksin - 1.1 kg pakastettu</p>
                         <div class="product-footer">
                             <span class="product-price">€65.00</span>
                             <button class="add-to-cart" onclick="addToCart('Pistachio Full Cake', 65.00)">
@@ -873,12 +877,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/6911b81369fd93f045fbdffc" alt="Tiramisu Cake">
-                        <span class="product-badge">Full Size</span>
+                        <span class="product-badge" data-lang-fi="Täysikokoinen" data-lang-en="Full Size">Täysikokoinen</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Full Cake</span>
-                        <h3 class="product-name">Tiramisu Cake</h3>
-                        <p class="product-description">Full size classic tiramisu - frozen</p>
+                        <span class="product-category" data-lang-fi="Täysikokoinen Kakku" data-lang-en="Full Cake">Täysikokoinen Kakku</span>
+                        <h3 class="product-name" data-lang-fi="Tiramisu Kakku" data-lang-en="Tiramisu Cake">Tiramisu Kakku</h3>
+                        <p class="product-description" data-lang-fi="Täysikokoinen klassinen tiramisu - pakastettu" data-lang-en="Full size classic tiramisu - frozen">Täysikokoinen klassinen tiramisu - pakastettu</p>
                         <div class="product-footer">
                             <span class="product-price">€55.00</span>
                             <button class="add-to-cart" onclick="addToCart('Tiramisu Full Cake', 55.00)">
@@ -892,12 +896,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/6911b81a61cd50cf5c4ed1a1" alt="Chocolate Trilogy Cake">
-                        <span class="product-badge">Full Size</span>
+                        <span class="product-badge" data-lang-fi="Täysikokoinen" data-lang-en="Full Size">Täysikokoinen</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Full Cake</span>
+                        <span class="product-category" data-lang-fi="Täysikokoinen Kakku" data-lang-en="Full Cake">Täysikokoinen Kakku</span>
                         <h3 class="product-name">Chocolate Trilogy</h3>
-                        <p class="product-description">Full size triple chocolate cake - frozen</p>
+                        <p class="product-description" data-lang-fi="Täysikokoinen kolmen suklaan kakku - pakastettu" data-lang-en="Full size triple chocolate cake - frozen">Täysikokoinen kolmen suklaan kakku - pakastettu</p>
                         <div class="product-footer">
                             <span class="product-price">€65.00</span>
                             <button class="add-to-cart" onclick="addToCart('Chocolate Trilogy Full', 65.00)">
@@ -911,12 +915,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/6911b81961cd50cf5c4ed19f" alt="Torta della Nonna">
-                        <span class="product-badge">Full Size</span>
+                        <span class="product-badge" data-lang-fi="Täysikokoinen" data-lang-en="Full Size">Täysikokoinen</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Full Cake</span>
+                        <span class="product-category" data-lang-fi="Täysikokoinen Kakku" data-lang-en="Full Cake">Täysikokoinen Kakku</span>
                         <h3 class="product-name">Torta della Nonna</h3>
-                        <p class="product-description">Full size with lemon custard and pine nuts - frozen</p>
+                        <p class="product-description" data-lang-fi="Täysikokoinen sitruunakermalla ja pinjansiemenillä - pakastettu" data-lang-en="Full size with lemon custard and pine nuts - frozen">Täysikokoinen sitruunakermalla ja pinjansiemenillä - pakastettu</p>
                         <div class="product-footer">
                             <span class="product-price">€65.00</span>
                             <button class="add-to-cart" onclick="addToCart('Torta della Nonna Full', 65.00)">
@@ -930,12 +934,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/6911b81861cd50cf5c4ed19e" alt="Pears and Ricotta">
-                        <span class="product-badge">Full Size</span>
+                        <span class="product-badge" data-lang-fi="Täysikokoinen" data-lang-en="Full Size">Täysikokoinen</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Full Cake</span>
+                        <span class="product-category" data-lang-fi="Täysikokoinen Kakku" data-lang-en="Full Cake">Täysikokoinen Kakku</span>
                         <h3 class="product-name">Pears & Ricotta</h3>
-                        <p class="product-description">Full size pears and ricotta cake - frozen</p>
+                        <p class="product-description" data-lang-fi="Täysikokoinen päärynä-ricotta kakku - pakastettu" data-lang-en="Full size pears and ricotta cake - frozen">Täysikokoinen päärynä-ricotta kakku - pakastettu</p>
                         <div class="product-footer">
                             <span class="product-price">€60.00</span>
                             <button class="add-to-cart" onclick="addToCart('Pears & Ricotta Full', 60.00)">
@@ -953,20 +957,20 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">🎁 Special Offers</span>
-                <h2 class="section-title">Combo Deals</h2>
-                <p class="section-subtitle">Great value combinations</p>
+                <h2 class="section-title" data-lang-fi="Yhdistelmätarjoukset" data-lang-en="Combo Deals">Yhdistelmätarjoukset</h2>
+                <p class="section-subtitle" data-lang-fi="Erinomaisia edullisia yhdistelmiä" data-lang-en="Great value combinations">Erinomaisia edullisia yhdistelmiä</p>
             </div>
             <div class="product-grid">
                 <!-- Zeppole & Coffee -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/694a8de7ba77b0b8b3a19f75" alt="Zeppole & Coffee">
-                        <span class="product-badge offer-badge">Offer</span>
+                        <span class="product-badge offer-badge" data-lang-fi="Tarjous" data-lang-en="Offer">Tarjous</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Combo</span>
-                        <h3 class="product-name">Zeppole Mignion & Coffee</h3>
-                        <p class="product-description">Zeppole with your choice of coffee</p>
+                        <span class="product-category" data-lang-fi="Yhdistelmä" data-lang-en="Combo">Yhdistelmä</span>
+                        <h3 class="product-name" data-lang-fi="Zeppole Mignion & Kahvi" data-lang-en="Zeppole Mignion & Coffee">Zeppole Mignion & Kahvi</h3>
+                        <p class="product-description" data-lang-fi="Zeppole valitsemasi kahvin kanssa" data-lang-en="Zeppole with your choice of coffee">Zeppole valitsemasi kahvin kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€6.00</span>
                             <button class="add-to-cart" onclick="addToCart('Zeppole & Coffee', 6.00)">
@@ -980,12 +984,12 @@
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-image">
                         <img src="https://imageproxy.wolt.com/assets/694e50453f46dc35e6efc310" alt="Gocce & Coffee">
-                        <span class="product-badge offer-badge">Offer</span>
+                        <span class="product-badge offer-badge" data-lang-fi="Tarjous" data-lang-en="Offer">Tarjous</span>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Combo</span>
-                        <h3 class="product-name">Gocce Bigusto & Coffee</h3>
-                        <p class="product-description">Gocce Bigusto with your choice of coffee</p>
+                        <span class="product-category" data-lang-fi="Yhdistelmä" data-lang-en="Combo">Yhdistelmä</span>
+                        <h3 class="product-name" data-lang-fi="Gocce Bigusto & Kahvi" data-lang-en="Gocce Bigusto & Coffee">Gocce Bigusto & Kahvi</h3>
+                        <p class="product-description" data-lang-fi="Gocce Bigusto valitsemasi kahvin kanssa" data-lang-en="Gocce Bigusto with your choice of coffee">Gocce Bigusto valitsemasi kahvin kanssa</p>
                         <div class="product-footer">
                             <span class="product-price">€7.00</span>
                             <button class="add-to-cart" onclick="addToCart('Gocce & Coffee', 7.00)">
@@ -1008,46 +1012,46 @@
             <div class="about-grid">
                 <div class="about-content">
                     <span class="section-badge">🇮🇹 La Nostra Storia</span>
-                    <h2 class="section-title">A Taste of Italy in Helsinki</h2>
+                    <h2 class="section-title" data-lang-fi="Makupala Italiaa Helsingissä" data-lang-en="A Taste of Italy in Helsinki">Makupala Italiaa Helsingissä</h2>
                     <div class="italian-quote">
                         <span class="quote-mark">"</span>
                         <p>La vita è troppo breve per mangiare dolci mediocri</p>
-                        <span class="quote-translation">Life is too short for mediocre sweets</span>
+                        <span class="quote-translation" data-lang-fi="Elämä on liian lyhyt keskinkertaisille herkuille" data-lang-en="Life is too short for mediocre sweets">Elämä on liian lyhyt keskinkertaisille herkuille</span>
                     </div>
-                    <p class="about-text">
-                        <strong>Bon Bon</strong> is an exclusive destination in Finland where you can experience 
-                        the true essence of <em>Italian pastry art</em>. We bring authentic flavors directly from 
-                        Italy to Helsinki, using traditional recipes passed down through generations.
+                    <p class="about-text" data-lang-fi="<strong>Bon Bon</strong> on ainutlaatuinen kohde Suomessa, jossa voit kokea <em>italialaisen leivontataiteen</em> todellisen olemuksen. Tuomme aitoja makuja suoraan Italiasta Helsinkiin, käyttäen perinteisiä reseptejä, jotka ovat siirtyneet sukupolvelta toiselle." data-lang-en="<strong>Bon Bon</strong> is an exclusive destination in Finland where you can experience the true essence of <em>Italian pastry art</em>. We bring authentic flavors directly from Italy to Helsinki, using traditional recipes passed down through generations.">
+                        <strong>Bon Bon</strong> on ainutlaatuinen kohde Suomessa, jossa voit kokea 
+                        <em>italialaisen leivontataiteen</em> todellisen olemuksen. Tuomme aitoja makuja suoraan 
+                        Italiasta Helsinkiin, käyttäen perinteisiä reseptejä, jotka ovat siirtyneet sukupolvelta toiselle.
                     </p>
-                    <p class="about-text">
-                        Every creation — from our signature <strong>Tiramisù</strong> to our crispy <strong>Cannoli Siciliani</strong> — 
-                        embodies the passion and dedication of Italian culinary tradition. We source premium 
-                        ingredients including <em>mascarpone from Lombardy</em>, <em>pistachios from Sicily</em>, 
-                        and <em>espresso from Naples</em>.
+                    <p class="about-text" data-lang-fi="Jokainen luomus — kuuluisasta <strong>Tiramisusta</strong> rapeisiin <strong>Cannoli Sicilianeihin</strong> — ilmentää italialaisen ruokaperinteen intohimoa ja omistautumista. Hankimme laadukkaita raaka-aineita kuten <em>mascarponea Lombardiasta</em>, <em>pistaaseja Sisiliasta</em> ja <em>espressoa Napolista</em>." data-lang-en="Every creation — from our signature <strong>Tiramisù</strong> to our crispy <strong>Cannoli Siciliani</strong> — embodies the passion and dedication of Italian culinary tradition. We source premium ingredients including <em>mascarpone from Lombardy</em>, <em>pistachios from Sicily</em>, and <em>espresso from Naples</em>.">
+                        Jokainen luomus — kuuluisasta <strong>Tiramisusta</strong> rapeisiin <strong>Cannoli Sicilianeihin</strong> — 
+                        ilmentää italialaisen ruokaperinteen intohimoa ja omistautumista. Hankimme laadukkaita 
+                        raaka-aineita kuten <em>mascarponea Lombardiasta</em>, <em>pistaaseja Sisiliasta</em> 
+                        ja <em>espressoa Napolista</em>.
                     </p>
                     <div class="about-features">
                         <div class="feature">
                             <div class="feature-icon">
                                 <i class="fas fa-flag"></i>
                             </div>
-                            <span>100% Italian Recipes</span>
+                            <span data-lang-fi="100% Italialaiset Reseptit" data-lang-en="100% Italian Recipes">100% Italialaiset Reseptit</span>
                         </div>
                         <div class="feature">
                             <div class="feature-icon">
                                 <i class="fas fa-gem"></i>
                             </div>
-                            <span>Premium Ingredients</span>
+                            <span data-lang-fi="Laadukkaat Raaka-aineet" data-lang-en="Premium Ingredients">Laadukkaat Raaka-aineet</span>
                         </div>
                         <div class="feature">
                             <div class="feature-icon">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <span>Made with Passion</span>
+                            <span data-lang-fi="Tehty Intohimolla" data-lang-en="Made with Passion">Tehty Intohimolla</span>
                         </div>
                     </div>
                     <div class="about-cta">
-                        <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary">
-                            <i class="fas fa-motorcycle"></i> Order Now on Wolt
+                        <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary" data-lang-fi="<i class='fas fa-motorcycle'></i> Tilaa Nyt Woltista" data-lang-en="<i class='fas fa-motorcycle'></i> Order Now on Wolt">
+                            <i class="fas fa-motorcycle"></i> Tilaa Nyt Woltista
                         </a>
                     </div>
                 </div>
@@ -1056,7 +1060,7 @@
                         <img src="https://imageproxy.wolt.com/assets/68f630a7fc9f2c59857d14e5" alt="Bon Bon Kahvila">
                     </div>
                     <div class="image-badge">
-                        <span class="badge-text">Since 2024</span>
+                        <span class="badge-text" data-lang-fi="Vuodesta 2024" data-lang-en="Since 2024">Vuodesta 2024</span>
                         <span class="badge-location">Helsinki, Finland</span>
                     </div>
                 </div>
@@ -1069,37 +1073,37 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">📍 Visit Us</span>
-                <h2 class="section-title">Contact & Location</h2>
+                <h2 class="section-title" data-lang-fi="Yhteystiedot & Sijainti" data-lang-en="Contact & Location">Yhteystiedot & Sijainti</h2>
             </div>
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <h4>Address</h4>
+                            <h4 data-lang-fi="Osoite" data-lang-en="Address">Osoite</h4>
                             <p>Itäkatu 1-7, 00930 Helsinki</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <h4>Phone</h4>
+                            <h4 data-lang-fi="Puhelin" data-lang-en="Phone">Puhelin</h4>
                             <p>+358 40 675 1176</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
                         <div>
-                            <h4>Opening Hours</h4>
-                            <p>Mon - Sun: 10:00 - 20:30</p>
+                            <h4 data-lang-fi="Aukioloajat" data-lang-en="Opening Hours">Aukioloajat</h4>
+                            <p data-lang-fi="Ma - Su: 10:00 - 20:30" data-lang-en="Mon - Sun: 10:00 - 20:30">Ma - Su: 10:00 - 20:30</p>
                         </div>
                     </div>
                 </div>
                 <div class="order-online">
-                    <h3>Order Online</h3>
-                    <p>Get your favorites delivered to your door</p>
-                    <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary">
-                        <i class="fas fa-motorcycle"></i> Order on Wolt
+                    <h3 data-lang-fi="Tilaa Verkosta" data-lang-en="Order Online">Tilaa Verkosta</h3>
+                    <p data-lang-fi="Saat suosikkisi toimitettuna kotiovellesi" data-lang-en="Get your favorites delivered to your door">Saat suosikkisi toimitettuna kotiovellesi</p>
+                    <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary" data-lang-fi="<i class='fas fa-motorcycle'></i> Tilaa Woltista" data-lang-en="<i class='fas fa-motorcycle'></i> Order on Wolt">
+                        <i class="fas fa-motorcycle"></i> Tilaa Woltista
                     </a>
                 </div>
             </div>
@@ -1113,14 +1117,14 @@
                 <div class="footer-brand">
                     <span class="logo-icon">☕</span>
                     <span class="logo-text">Bon Bon</span>
-                    <p>Authentic Italian Café in Helsinki</p>
+                    <p data-lang-fi="Aito Italialainen Kahvila Helsingissä" data-lang-en="Authentic Italian Café in Helsinki">Aito Italialainen Kahvila Helsingissä</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#cakes">Cakes</a>
-                    <a href="#menu">Menu</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#home" data-lang-fi="Etusivu" data-lang-en="Home">Etusivu</a>
+                    <a href="#cakes" data-lang-fi="Kakut" data-lang-en="Cakes">Kakut</a>
+                    <a href="#menu" data-lang-fi="Menu" data-lang-en="Menu">Menu</a>
+                    <a href="#about" data-lang-fi="Meistä" data-lang-en="About">Meistä</a>
+                    <a href="#contact" data-lang-fi="Yhteystiedot" data-lang-en="Contact">Yhteystiedot</a>
                 </div>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1128,7 +1132,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Kahvila Bon Bon. All rights reserved.</p>
+                <p data-lang-fi="&copy; 2025 Kahvila Bon Bon. Kaikki oikeudet pidätetään." data-lang-en="&copy; 2025 Kahvila Bon Bon. All rights reserved.">&copy; 2025 Kahvila Bon Bon. Kaikki oikeudet pidätetään.</p>
             </div>
         </div>
     </footer>
@@ -1137,7 +1141,7 @@
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3><i class="fas fa-shopping-bag"></i> Your Order</h3>
+            <h3><i class="fas fa-shopping-bag"></i> <span data-lang-fi="Tilauksesi" data-lang-en="Your Order">Tilauksesi</span></h3>
             <button class="close-cart" onclick="closeCart()">
                 <i class="fas fa-times"></i>
             </button>
@@ -1145,16 +1149,16 @@
         <div class="cart-items" id="cartItems">
             <div class="empty-cart">
                 <i class="fas fa-shopping-basket"></i>
-                <p>Your cart is empty</p>
+                <p data-lang-fi="Ostoskorisi on tyhjä" data-lang-en="Your cart is empty">Ostoskorisi on tyhjä</p>
             </div>
         </div>
         <div class="cart-footer">
             <div class="cart-total">
-                <span>Total:</span>
+                <span data-lang-fi="Yhteensä:" data-lang-en="Total:">Yhteensä:</span>
                 <span id="cartTotal">€0.00</span>
             </div>
-            <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary checkout-btn">
-                <i class="fas fa-motorcycle"></i> Continue on Wolt
+            <a href="https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon" target="_blank" class="btn btn-primary checkout-btn" data-lang-fi="<i class='fas fa-motorcycle'></i> Jatka Woltissa" data-lang-en="<i class='fas fa-motorcycle'></i> Continue on Wolt">
+                <i class="fas fa-motorcycle"></i> Jatka Woltissa
             </a>
         </div>
     </div>

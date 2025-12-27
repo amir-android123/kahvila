@@ -1,3 +1,55 @@
+// ===== LANGUAGE SWITCHING =====
+let currentLanguage = localStorage.getItem('language') || 'fi';
+
+const translations = {
+    fi: {
+        cartEmpty: 'Ostoskorisi on tyhjä',
+        addedToCart: 'lisätty koriin!',
+        total: 'Yhteensä:'
+    },
+    en: {
+        cartEmpty: 'Your cart is empty',
+        addedToCart: 'added to cart!',
+        total: 'Total:'
+    }
+};
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Update language button active states
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update all elements with data-lang attributes
+    document.querySelectorAll('[data-lang-fi], [data-lang-en]').forEach(el => {
+        const text = el.getAttribute(`data-lang-${lang}`);
+        if (text) {
+            el.innerHTML = text;
+        }
+    });
+    
+    // Update page title
+    document.title = lang === 'fi' 
+        ? 'Kahvila Bon Bon - Aito Italialainen Kahvila Helsingissä'
+        : 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
+    
+    // Update cart UI with current language
+    updateCartUI();
+}
+
+function initLanguage() {
+    setLanguage(currentLanguage);
+}
+
 // ===== CART FUNCTIONALITY =====
 let cart = [];
 
@@ -37,12 +89,15 @@ function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
     
+    // Get translation
+    const t = translations[currentLanguage];
+    
     // Update items
     if (cart.length === 0) {
         cartItems.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-basket"></i>
-                <p>Your cart is empty</p>
+                <p>${t.cartEmpty}</p>
             </div>
         `;
     } else {
@@ -87,8 +142,14 @@ function closeCart() {
 function showToast(message) {
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
+    const t = translations[currentLanguage];
     
-    toastMessage.textContent = message;
+    // Add translation suffix for cart message
+    const displayMessage = message.includes('added to cart') 
+        ? message.replace('added to cart!', t.addedToCart)
+        : message + ' ' + t.addedToCart;
+    
+    toastMessage.textContent = displayMessage;
     toast.classList.add('active');
     
     setTimeout(() => {
@@ -224,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     updateCartUI();
     loadProductsFromJSON();
+    initLanguage();
 });
 
 // Close cart on escape key

@@ -91,7 +91,9 @@ class WoltCrawler:
                 json.dump(products, f, indent=2, ensure_ascii=False)
             print(f"✓ Saved {len(products)} products to {self.output_file}")
             return True
-        except Exception
+        except Exception as e:
+            print(f"✗ Error saving products: {e}")
+            return False
     
     def trigger_vercel_deployment(self):
         """Trigger Vercel deployment via Deploy Hook"""
@@ -125,8 +127,6 @@ class WoltCrawler:
             return False
         except Exception as e:
             print(f"✗ Error with git: {e}")
-            return False as e:
-            print(f"Error saving products: {e}")
             return False
     
     def load_existing_products(self):
@@ -145,12 +145,6 @@ class WoltCrawler:
         
         html_content = self.fetch_wolt_page()
         if not html_content:
-            
-            # Push to GitHub and trigger Vercel deployment
-            if self.git_commit_and_push():
-                time.sleep(2)  # Wait a moment before triggering deployment
-                self.trigger_vercel_deployment()
-            
             print("✗ Failed to fetch page")
             return False
         
@@ -171,7 +165,53 @@ class WoltCrawler:
         if content_hash != self.last_hash:
             # Content changed
             old_products = self.load_existing_products()
-      Load configuration
+            self.last_hash = content_hash
+            self.save_products(products)
+            
+            # Calculate differences
+            old_names = set(p['name'] for p in old_products)
+            new_names = set(p['name'] for p in products)
+            added = new_names - old_names
+            removed = old_names - new_names
+            
+            print(f"✓ Products updated: {len(products)} total")
+            if added:
+                print(f"  + Added: {', '.join(list(added)[:3])}{'...' if len(added) > 3 else ''}")
+            if removed:
+                print(f"  - Removed: {', '.join(list(removed)[:3])}{'...' if len(removed) > 3 else ''}")
+            
+            # Push to GitHub and trigger Vercel deployment
+            if self.git_commit_and_push():
+                time.sleep(2)  # Wait a moment before triggering deployment
+                self.trigger_vercel_deployment()
+            
+            return True
+        else:
+            print("✓ No changes detected")
+            return False
+    
+    def run_once(self):
+        """Run the crawler once"""
+        return self.check_for_updates()
+    
+    def run_continuous(self):
+        """Run the crawler continuously"""
+        print(f"Starting Wolt Crawler...")
+        print(f"Monitoring: {self.wolt_url}")
+        print(f"Check interval: {self.check_interval} seconds")
+        print(f"Output file: {self.output_file}")
+        print("\nPress Ctrl+C to stop\n")
+        
+        try:
+            while True:
+                self.check_for_updates()
+                time.sleep(self.check_interval)
+        except KeyboardInterrupt:
+            print("\n\nCrawler stopped by user")
+
+
+if __name__ == "__main__":
+    # Load configuration
     config_file = 'config.json'
     
     if os.path.exists(config_file):
@@ -197,7 +237,6 @@ class WoltCrawler:
         print("Set your Wolt restaurant URL in config.json\n")
         exit(1)
     
-    print(f"Website: https://kahvila-ochre.vercel.app/")
     print(f"Vercel Deploy: {'Enabled ✓' if VERCEL_DEPLOY_HOOK else 'Disabled ✗'}")
     print()
     
@@ -206,46 +245,6 @@ class WoltCrawler:
         output_file=OUTPUT_FILE,
         check_interval=CHECK_INTERVAL,
         vercel_deploy_hook=VERCEL_DEPLOY_HOOK
-    
-    def run_once(self):
-        """Run the crawler once"""
-        return self.check_for_updates()
-    
-    def run_continuous(self):
-        """Run the crawler continuously"""
-        print(f"Starting Wolt Crawler...")
-        print(f"Monitoring: {self.wolt_url}")
-        print(f"Check interval: {self.check_interval} seconds")
-        print(f"Output file: {self.output_file}")
-        print("\nPress Ctrl+C to stop\n")
-        
-        try:
-            while True:
-                self.check_for_updates()
-                time.sleep(self.check_interval)
-        except KeyboardInterrupt:
-            print("\n\nCrawler stopped by user")
-
-
-if __name__ == "__main__":
-    # Configuration
-    WOLT_URL = "YOUR_WOLT_RESTAURANT_URL_HERE"  # Replace with your Wolt URL
-    OUTPUT_FILE = "products.json"
-    CHECK_INTERVAL = 300  # 5 minutes
-    
-    print("=" * 60)
-    print("Wolt Crawler - Automatic Product Monitor")
-    print("=" * 60)
-    
-    if WOLT_URL == "YOUR_WOLT_RESTAURANT_URL_HERE":
-        print("\n⚠ WARNING: Please update WOLT_URL in the script!")
-        print("Edit wolt_crawler.py and set your Wolt restaurant URL\n")
-        exit(1)
-    
-    crawler = WoltCrawler(
-        wolt_url=WOLT_URL,
-        output_file=OUTPUT_FILE,
-        check_interval=CHECK_INTERVAL
     )
     
     # Run continuously

@@ -198,6 +198,40 @@ img {
     gap: 1rem;
 }
 
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(212, 165, 116, 0.1);
+    padding: 0.25rem;
+    border-radius: 25px;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.lang-btn:hover {
+    color: var(--primary);
+}
+
+.lang-btn.active {
+    background: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 2px 10px rgba(212, 165, 116, 0.4);
+}
+
 .cart-btn {
     background: transparent;
     border: 2px solid var(--primary);
