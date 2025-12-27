@@ -39,7 +39,7 @@ function setLanguage(lang) {
     
     // Update page title
     document.title = lang === 'fi' 
-        ? 'Kahvila Bon Bon - Aito Italialainen Kahvila Helsingissä'
+        ? 'Kahvila Bon Bon - Aito italialainen kahvila Helsingissä'
         : 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
     
     // Update cart UI with current language
