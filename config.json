@@ -1,0 +1,7 @@
+{
+  "wolt_url": "https://wolt.com/en/fin/helsinki/restaurant/kahvila-bon-bon",
+  "output_file": "products.json",
+  "check_interval_minutes": 5,
+  "log_file": "crawler.log",
+  "vercel_deploy_hook": "https://api.vercel.com/v1/integrations/deploy/prj_kZGCMuPuf3wbyeFFjW2jgtpthjRz/mLN4R4DTa5"
+}

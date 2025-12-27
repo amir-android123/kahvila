@@ -1,3 +1,55 @@
+// ===== LANGUAGE SWITCHING =====
+let currentLanguage = localStorage.getItem('language') || 'fi';
+
+const translations = {
+    fi: {
+        cartEmpty: 'Ostoskorisi on tyhjä',
+        addedToCart: 'lisätty koriin!',
+        total: 'Yhteensä:'
+    },
+    en: {
+        cartEmpty: 'Your cart is empty',
+        addedToCart: 'added to cart!',
+        total: 'Total:'
+    }
+};
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Update language button active states
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update all elements with data-lang attributes
+    document.querySelectorAll('[data-lang-fi], [data-lang-en]').forEach(el => {
+        const text = el.getAttribute(`data-lang-${lang}`);
+        if (text) {
+            el.innerHTML = text;
+        }
+    });
+    
+    // Update page title
+    document.title = lang === 'fi' 
+        ? 'Kahvila Bon Bon - Aito italialainen kahvila Helsingissä'
+        : 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
+    
+    // Update cart UI with current language
+    updateCartUI();
+}
+
+function initLanguage() {
+    setLanguage(currentLanguage);
+}
+
 // ===== CART FUNCTIONALITY =====
 let cart = [];
 
@@ -37,12 +89,15 @@ function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
     
+    // Get translation
+    const t = translations[currentLanguage];
+    
     // Update items
     if (cart.length === 0) {
         cartItems.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-basket"></i>
-                <p>Your cart is empty</p>
+                <p>${t.cartEmpty}</p>
             </div>
         `;
     } else {
@@ -87,8 +142,14 @@ function closeCart() {
 function showToast(message) {
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
+    const t = translations[currentLanguage];
     
-    toastMessage.textContent = message;
+    // Add translation suffix for cart message
+    const displayMessage = message.includes('added to cart') 
+        ? message.replace('added to cart!', t.addedToCart)
+        : message + ' ' + t.addedToCart;
+    
+    toastMessage.textContent = displayMessage;
     toast.classList.add('active');
     
     setTimeout(() => {
@@ -163,6 +224,59 @@ function initSmoothScroll() {
     });
 }
 
+// ===== LOAD PRODUCTS FROM JSON =====
+async function loadProductsFromJSON() {
+    try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+            console.log('No products.json found, using default products');
+            return;
+        }
+        
+        const products = await response.json();
+        if (products.length > 0) {
+            updateProductDisplay(products);
+        }
+    } catch (error) {
+        console.log('Error loading products:', error);
+    }
+}
+
+function updateProductDisplay(products) {
+    const productsSection = document.getElementById('products');
+    if (!productsSection) return;
+    
+    const productGrid = productsSection.querySelector('.product-grid');
+    if (!productGrid) return;
+    
+    // Clear existing products
+    productGrid.innerHTML = '';
+    
+    // Add new products
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image_url}" alt="${product.name}" loading="lazy">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <div class="product-footer">
+                    <span class="product-price">€${product.price.toFixed(2)}</span>
+                    <button class="btn-primary" onclick="addToCart('${product.name.replace(/'/g, "\\'")}', ${product.price})">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        `;
+        productGrid.appendChild(productCard);
+    });
+    
+    // Reinitialize scroll animations for new elements
+    initScrollAnimations();
+}
+
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
@@ -170,6 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initSmoothScroll();
     updateCartUI();
+    loadProductsFromJSON();
+    initLanguage();
 });
 
 // Close cart on escape key
