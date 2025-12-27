@@ -6,6 +6,8 @@ import os
 from datetime import datetime
 import hashlib
 import subprocess
+import re
+from urllib.parse import unquote
 
 class WoltCrawler:
     def __init__(self, wolt_url, output_file='products.json', check_interval=300, vercel_deploy_hook=None):
@@ -28,7 +30,11 @@ class WoltCrawler:
         """Fetch the Wolt page HTML"""
         try:
             headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
             }
             response = requests.get(self.wolt_url, headers=headers, timeout=30)
             response.raise_for_status()
@@ -39,57 +45,136 @@ class WoltCrawler:
     
     def extract_products(self, html_content):
         """Extract products from the HTML content"""
-        import re
-        from urllib.parse import unquote
-        
-        # Find all URL-encoded JSON data containing product information
-        pattern = r'%22name%22%3A%22([^%]+(?:%[0-9A-F]{2}[^%]*)*)%22.*?%22images%22%3A%5B%7B%22url%22%3A%22(https%3A%2F%2Fimageproxy\.wolt\.com%2Fassets%2F[a-f0-9]+)%22'
-        matches = re.findall(pattern, html_content, re.IGNORECASE)
-        
         products = []
-        seen_names = set()
         
-        for name_encoded, url_encoded in matches:
-            name = unquote(name_encoded)
-            url = unquote(url_encoded)
+        # Method 1: Find and parse the items array from URL-encoded JSON
+        # Wolt embeds product data in URL-encoded JSON within the HTML
+        idx = html_content.find('%22items%22%3A%5B')
+        
+        if idx < 0:
+            print("  No items array found in page")
+            return products
+        
+        # Extract a large chunk starting from items
+        chunk = html_content[idx:idx+150000]
+        
+        # Find end of items array - look for the next key
+        end_match = re.search(r'%5D%2C%22options%22', chunk)
+        if end_match:
+            chunk = chunk[:end_match.start() + 3]
+        
+        # URL decode
+        decoded = unquote(chunk)
+        
+        # Parse as JSON
+        json_str = '{' + decoded + '}'
+        
+        try:
+            data = json.loads(json_str)
+            items = data.get('items', [])
             
-            if name not in seen_names:
-                seen_names.add(name)
-                products.append({
-                    'name': name,
-                    'image_url': url,
-                    'price': 0.00  # You can add price extraction logic here
-                })
-        
-        # Also search for the reverse pattern (images before name)
-        pattern2 = r'%22images%22%3A%5B%7B%22url%22%3A%22(https%3A%2F%2Fimageproxy\.wolt\.com%2Fassets%2F[a-f0-9]+)%22.*?%22name%22%3A%22([^%]+(?:%[0-9A-F]{2}[^%]*)*)%22'
-        matches2 = re.findall(pattern2, html_content, re.IGNORECASE)
-        
-        for url_encoded, name_encoded in matches2:
-            name = unquote(name_encoded)
-            url = unquote(url_encoded)
+            for item in items:
+                product = self._parse_item(item)
+                if product:
+                    products.append(product)
             
-            if name not in seen_names:
-                seen_names.add(name)
-                products.append({
-                    'name': name,
-                    'image_url': url,
-                    'price': 0.00
-                })
+            print(f"  Found {len(products)} products")
+            
+        except json.JSONDecodeError as e:
+            print(f"  JSON parse error: {e}")
+            # Fallback: use regex extraction
+            products = self._extract_with_regex(decoded)
         
+        return products
+    
+    def _parse_item(self, item):
+        """Parse a single item dictionary into a product"""
+        if not isinstance(item, dict):
+            return None
+            
+        name = item.get('name', '')
+        if not name or len(name) < 2:
+            return None
+        
+        # Get price (Wolt stores prices in cents)
+        price = item.get('price', 0)
+        if isinstance(price, int):
+            price = price / 100
+        
+        # Get image URL
+        image_url = ''
+        images = item.get('images', [])
+        if images and isinstance(images, list) and len(images) > 0:
+            if isinstance(images[0], dict):
+                image_url = images[0].get('url', '')
+            elif isinstance(images[0], str):
+                image_url = images[0]
+        
+        # Get description
+        description = item.get('description', '') or ''
+        
+        # Get item ID
+        item_id = item.get('id', '') or hashlib.md5(name.encode()).hexdigest()[:16]
+        
+        return {
+            'id': item_id,
+            'name': name,
+            'description': description,
+            'price': round(price, 2),
+            'image_url': image_url,
+            'category': ''
+        }
+    
+    def _extract_with_regex(self, decoded_content):
+        """Fallback regex extraction method"""
+        products = []
+        
+        # Pattern for individual items
+        item_pattern = r'"id":"([a-f0-9]+)"[^}]*"name":"([^"]+)"[^}]*"price":(\d+)[^}]*"images":\[\{"url":"([^"]+)"'
+        matches = re.findall(item_pattern, decoded_content, re.DOTALL)
+        
+        for item_id, name, price, image_url in matches:
+            if len(name) < 2:
+                continue
+            products.append({
+                'id': item_id,
+                'name': name,
+                'description': '',
+                'price': round(int(price) / 100, 2),
+                'image_url': image_url,
+                'category': ''
+            })
+        
+        print(f"  Regex found {len(products)} products")
         return products
     
     def get_content_hash(self, products):
         """Generate a hash of the products to detect changes"""
-        content_str = json.dumps(products, sort_keys=True)
+        # Sort by ID for consistent hashing
+        sorted_products = sorted(products, key=lambda x: x.get('id', x.get('name', '')))
+        content_str = json.dumps(sorted_products, sort_keys=True)
         return hashlib.md5(content_str.encode()).hexdigest()
     
     def save_products(self, products):
-        """Save products to JSON file"""
+        """Save products to JSON file in a clean format"""
         try:
+            # Sort products by name for consistent output
+            sorted_products = sorted(products, key=lambda x: x.get('name', ''))
+            
+            # Create clean output format
+            output_products = []
+            for p in sorted_products:
+                output_products.append({
+                    'name': p.get('name', ''),
+                    'description': p.get('description', ''),
+                    'price': p.get('price', 0),
+                    'image_url': p.get('image_url', ''),
+                    'category': p.get('category', '')
+                })
+            
             with open(self.output_file, 'w', encoding='utf-8') as f:
-                json.dump(products, f, indent=2, ensure_ascii=False)
-            print(f"✓ Saved {len(products)} products to {self.output_file}")
+                json.dump(output_products, f, indent=2, ensure_ascii=False)
+            print(f"✓ Saved {len(output_products)} products to {self.output_file}")
             return True
         except Exception as e:
             print(f"✗ Error saving products: {e}")
@@ -117,13 +202,59 @@ class WoltCrawler:
         """Commit and push changes to GitHub"""
         try:
             print("📤 Committing and pushing to GitHub...")
-            subprocess.run(['git', 'add', self.output_file], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
-            subprocess.run(['git', 'commit', '-m', f'Auto-update products - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
-            subprocess.run(['git', 'push', 'origin', 'main'], check=True, cwd=os.path.dirname(os.path.abspath(self.output_file)) or '.')
+            
+            # Get the directory of the output file
+            work_dir = os.path.dirname(os.path.abspath(self.output_file))
+            if not work_dir:
+                work_dir = os.getcwd()
+            
+            # Add the products file
+            result = subprocess.run(
+                ['git', 'add', self.output_file], 
+                check=True, 
+                cwd=work_dir,
+                capture_output=True,
+                text=True
+            )
+            
+            # Check if there are changes to commit
+            status_result = subprocess.run(
+                ['git', 'status', '--porcelain', self.output_file],
+                cwd=work_dir,
+                capture_output=True,
+                text=True
+            )
+            
+            if not status_result.stdout.strip():
+                print("  No changes to commit")
+                return False
+            
+            # Commit
+            commit_msg = f'Auto-update products - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+            subprocess.run(
+                ['git', 'commit', '-m', commit_msg], 
+                check=True, 
+                cwd=work_dir,
+                capture_output=True,
+                text=True
+            )
+            
+            # Push
+            subprocess.run(
+                ['git', 'push', 'origin', 'main'], 
+                check=True, 
+                cwd=work_dir,
+                capture_output=True,
+                text=True
+            )
+            
             print("✓ Changes pushed to GitHub!")
             return True
+            
         except subprocess.CalledProcessError as e:
             print(f"✗ Git operation failed: {e}")
+            if e.stderr:
+                print(f"  Error: {e.stderr}")
             return False
         except Exception as e:
             print(f"✗ Error with git: {e}")
