@@ -46,6 +46,59 @@ body {
     min-height: 100vh;
 }
 
+/* RTL Support for Arabic and Persian */
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl .nav-links {
+    flex-direction: row-reverse;
+}
+
+body.rtl .nav-actions {
+    flex-direction: row-reverse;
+}
+
+body.rtl .hero-buttons {
+    flex-direction: row-reverse;
+}
+
+body.rtl .about-grid {
+    direction: rtl;
+}
+
+body.rtl .contact-item {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+body.rtl .contact-item i {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+body.rtl .feature {
+    flex-direction: row-reverse;
+}
+
+body.rtl .footer-links {
+    flex-direction: row-reverse;
+}
+
+body.rtl .cart-item {
+    flex-direction: row-reverse;
+}
+
+body.rtl .product-badge {
+    right: auto;
+    left: 1rem;
+}
+
+body.rtl .language-switcher {
+    flex-direction: row-reverse;
+}
+
 /* Elegant Animations */
 @keyframes glow-pulse {
     0%, 100% { opacity: 0.8; }

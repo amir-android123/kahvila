@@ -16,6 +16,16 @@ const translations = {
         cartEmpty: 'Din kundvagn är tom',
         addedToCart: 'tillagd i kundvagnen!',
         total: 'Totalt:'
+    },
+    ar: {
+        cartEmpty: 'سلة التسوق فارغة',
+        addedToCart: 'تمت الإضافة إلى السلة!',
+        total: 'المجموع:'
+    },
+    fa: {
+        cartEmpty: 'سبد خرید شما خالی است',
+        addedToCart: 'به سبد اضافه شد!',
+        total: 'جمع:'
     }
 };
 
@@ -26,6 +36,15 @@ function setLanguage(lang) {
     // Update HTML lang attribute
     document.documentElement.lang = lang;
     
+    // Handle RTL for Arabic and Persian
+    if (lang === 'ar' || lang === 'fa') {
+        document.documentElement.dir = 'rtl';
+        document.body.classList.add('rtl');
+    } else {
+        document.documentElement.dir = 'ltr';
+        document.body.classList.remove('rtl');
+    }
+    
     // Update language button active states
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
@@ -35,7 +54,7 @@ function setLanguage(lang) {
     });
     
     // Update all elements with data-lang attributes
-    document.querySelectorAll('[data-lang-fi], [data-lang-en], [data-lang-sv]').forEach(el => {
+    document.querySelectorAll('[data-lang-fi], [data-lang-en], [data-lang-sv], [data-lang-ar], [data-lang-fa]').forEach(el => {
         const text = el.getAttribute(`data-lang-${lang}`);
         if (text) {
             el.innerHTML = text;
@@ -47,6 +66,10 @@ function setLanguage(lang) {
         document.title = 'Kahvila Bon Bon - Aito italialainen kahvila Helsingissä';
     } else if (lang === 'sv') {
         document.title = 'Kahvila Bon Bon - Autentiskt italienskt café i Helsingfors';
+    } else if (lang === 'ar') {
+        document.title = 'مقهى بون بون - مقهى إيطالي أصيل في هلسنكي';
+    } else if (lang === 'fa') {
+        document.title = 'کافه بن بن - کافه ایتالیایی اصیل در هلسینکی';
     } else {
         document.title = 'Kahvila Bon Bon - Authentic Italian Café in Helsinki';
     }
