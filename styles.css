@@ -5,11 +5,11 @@
     --primary-dark: #B8895A;
     --accent: #C9302C;
     --accent-light: #E85D4C;
-    --dark: #2A2015;
-    --dark-light: #3D3225;
-    --dark-medium: #4D4235;
+    --dark: #4A3A2A;
+    --dark-light: #5D4D3D;
+    --dark-medium: #6D5D4D;
     --text-light: #F5F0EB;
-    --text-muted: #A89F97;
+    --text-muted: #B8AFA7;
     --gold-gradient: linear-gradient(135deg, #D4A574, #F0D9B5, #D4A574);
     --italian-gradient: linear-gradient(135deg, #009246, #ffffff, #CE2B37);
     --luxury-gradient: linear-gradient(135deg, #D4A574 0%, #F0D9B5 25%, #D4A574 50%, #B8895A 75%, #D4A574 100%);
