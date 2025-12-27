@@ -291,6 +291,12 @@ class WoltCrawler:
             self.last_hash = content_hash
             self.save_products(products)
             print(f"✓ Initial load: {len(products)} products")
+            
+            # Push to GitHub and trigger Vercel deployment on first run too
+            if self.git_commit_and_push():
+                time.sleep(2)  # Wait a moment before triggering deployment
+                self.trigger_vercel_deployment()
+            
             return True
         
         if content_hash != self.last_hash:
@@ -311,10 +317,14 @@ class WoltCrawler:
             if removed:
                 print(f"  - Removed: {', '.join(list(removed)[:3])}{'...' if len(removed) > 3 else ''}")
             
-            # Push to GitHub and trigger Vercel deployment
-            if self.git_commit_and_push():
-                time.sleep(2)  # Wait a moment before triggering deployment
+            # Push to GitHub first, then trigger Vercel deployment
+            print("\n--- Deploying changes ---")
+            git_success = self.git_commit_and_push()
+            if git_success:
+                time.sleep(2)  # Wait for GitHub to process the push
                 self.trigger_vercel_deployment()
+            else:
+                print("⚠ Skipping Vercel deployment (no git changes or git failed)")
             
             return True
         else:
