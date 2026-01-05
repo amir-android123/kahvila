@@ -648,9 +648,12 @@ img {
 
 .stat-label {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #C9B8A8;
+    -webkit-text-fill-color: #C9B8A8;
     text-transform: uppercase;
     letter-spacing: 2px;
+    display: block;
+    margin-top: 0.5rem;
 }
 
 .stat-divider {
@@ -866,25 +869,26 @@ img {
 /* ===== PRODUCT GRID ===== */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
 }
 
 /* ===== PRODUCT CARDS ===== */
 .product-card {
     background: linear-gradient(145deg, var(--dark-medium), var(--dark-light));
-    border-radius: 24px;
+    border-radius: 16px;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(212, 165, 116, 0.1);
     position: relative;
+    transform: scale(1);
 }
 
 .product-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 24px;
+    border-radius: 16px;
     padding: 1px;
     background: linear-gradient(135deg, transparent 40%, rgba(212, 165, 116, 0.3), transparent 60%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -900,46 +904,55 @@ img {
 }
 
 .product-card:hover {
-    transform: translateY(-15px) scale(1.02);
+    transform: scale(1.08);
     box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(212, 165, 116, 0.15);
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.15);
     border-color: rgba(212, 165, 116, 0.3);
+    z-index: 10;
 }
 
 .product-image {
     position: relative;
-    height: 240px;
+    height: 140px;
     overflow: hidden;
     background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-image img {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 8px;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.15);
+    width: 90%;
+    height: 90%;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .product-badge {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 0.5rem;
+    left: 0.5rem;
     background: var(--luxury-gradient);
     background-size: 200% auto;
     color: var(--dark);
-    padding: 0.4rem 1rem;
+    padding: 0.25rem 0.6rem;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     animation: shimmer 2s linear infinite;
-    box-shadow: 0 5px 25px rgba(255, 179, 71, 0.5), 0 0 15px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 3px 15px rgba(255, 179, 71, 0.5), 0 0 10px rgba(255, 215, 0, 0.3);
     z-index: 2;
 }
 
@@ -950,24 +963,24 @@ img {
 }
 
 .product-info {
-    padding: 1.75rem;
+    padding: 1rem;
 }
 
 .product-category {
     display: inline-block;
     color: var(--primary);
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
     opacity: 0.9;
 }
 
 .product-name {
-    font-size: 1.35rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
     color: var(--text-light);
     transition: color 0.3s ease;
 }
@@ -978,9 +991,9 @@ img {
 
 .product-description {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -991,12 +1004,12 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1.25rem;
+    padding-top: 0.75rem;
     border-top: 1px solid rgba(212, 165, 116, 0.15);
 }
 
 .product-price {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 700;
     background: var(--luxury-gradient);
     background-size: 200% auto;
@@ -1739,5 +1752,381 @@ img {
     .hero-badge {
         padding: 0.6rem 1.25rem;
         font-size: 0.85rem;
+    }
+}
+
+/* ===== BUSINESS SECTION STYLES ===== */
+
+/* Business Button Styles */
+.btn-business {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.btn-business:hover {
+    background: linear-gradient(135deg, #2d5a87 0%, #3d7ab7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 58, 95, 0.35);
+}
+
+.nav-business {
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+}
+
+/* Business Section */
+.business-section {
+    padding: 7rem 0;
+    background: linear-gradient(180deg, #0f1419 0%, #1a202c 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.business-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 165, 116, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(212, 165, 116, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Clean Business Hero */
+.business-hero-clean {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.business-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 165, 116, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.25);
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.business-hero-badge i {
+    font-size: 0.9rem;
+}
+
+.business-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+}
+
+.business-main-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Main Grid Layout */
+.business-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Products Showcase */
+.business-products-showcase {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.business-products-showcase h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.business-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.business-product-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.business-product-item:hover {
+    background: rgba(212, 165, 116, 0.05);
+    border-color: rgba(212, 165, 116, 0.15);
+}
+
+.business-product-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 165, 116, 0.1);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.business-product-details h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.business-product-details p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.business-note {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: rgba(212, 165, 116, 0.08);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.business-note i {
+    color: var(--primary);
+}
+
+/* Contact Card */
+.business-contact-card {
+    background: linear-gradient(145deg, rgba(212, 165, 116, 0.08), rgba(212, 165, 116, 0.02));
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.business-contact-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.business-contact-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.business-contact-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Clean Form Styles */
+.business-form-clean {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.25s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: rgba(201, 184, 168, 0.4);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(212, 165, 116, 0.05);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.business-submit-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--dark);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.business-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+}
+
+.business-submit-btn i {
+    transition: transform 0.3s ease;
+}
+
+.business-submit-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Direct Contact */
+.business-direct-contact {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.business-direct-contact > span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.business-direct-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin: 0 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.business-direct-contact a:hover {
+    color: var(--primary-light);
+}
+
+.business-direct-contact a i {
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .business-main-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .business-main-title {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .business-section {
+        padding: 5rem 0;
+    }
+    
+    .business-hero-clean {
+        margin-bottom: 3rem;
+    }
+    
+    .business-main-title {
+        font-size: 1.85rem;
+    }
+    
+    .business-main-subtitle {
+        font-size: 1rem;
+    }
+    
+    .business-products-showcase,
+    .business-contact-card {
+        padding: 1.75rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .business-main-title {
+        font-size: 1.5rem;
+    }
+    
+    .business-product-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .business-direct-contact a {
+        display: block;
+        margin: 0.5rem 0;
     }
 }

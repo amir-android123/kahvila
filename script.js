@@ -309,7 +309,69 @@ function updateProductDisplay(products) {
     initScrollAnimations();
 }
 
-// ===== INITIALIZE =====
+
+// Close cart on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeCart();
+    }
+});
+
+// ===== BUSINESS FORM FUNCTIONALITY =====
+
+// Handle business form submission
+function handleBusinessFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    // Build email body
+    const businessName = formData.get('businessName');
+    const contactName = formData.get('contactName');
+    const contactEmail = formData.get('contactEmail');
+    const contactPhone = formData.get('contactPhone') || 'Not provided';
+    const message = formData.get('message');
+    
+    // Create email content
+    const subject = encodeURIComponent(`B2B Inquiry from ${businessName}`);
+    const body = encodeURIComponent(
+`BUSINESS INQUIRY
+
+Company: ${businessName}
+Contact Person: ${contactName}
+Email: ${contactEmail}
+Phone: ${contactPhone}
+
+Message:
+${message}
+
+---
+Sent via Bon Bon Business Contact Form`
+    );
+    
+    // Open email client
+    window.location.href = `mailto:info@bonboncoffee.shop?subject=${subject}&body=${body}`;
+    
+    // Show success message
+    showBusinessFormSuccess();
+}
+
+// Show success message after form submission
+function showBusinessFormSuccess() {
+    const successMessages = {
+        fi: 'Kiitos yhteydenotosta! Sähköpostiohjelmasi avautuu.',
+        en: 'Thank you! Your email client is opening.',
+        sv: 'Tack! Din e-postklient öppnas.',
+        ar: 'شكرًا! يتم فتح برنامج البريد الإلكتروني.',
+        fa: 'متشکریم! کلاینت ایمیل باز می‌شود.'
+    };
+    
+    const message = successMessages[currentLanguage] || successMessages['en'];
+    showToast(message);
+}
+
+// Update DOMContentLoaded to include business form initialization
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     initScrollAnimations();
@@ -318,11 +380,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
     loadProductsFromJSON();
     initLanguage();
-});
-
-// Close cart on escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeCart();
-    }
 });

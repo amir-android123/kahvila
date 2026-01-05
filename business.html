@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yritysasiakkaat | Bon Bon Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .b2b-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        }
+
+        .b2b-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #D4A574;
+            text-decoration: none;
+        }
+
+        .b2b-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .b2b-back:hover {
+            color: #D4A574;
+        }
+
+        /* Main Content */
+        .b2b-main {
+            padding: 8rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .b2b-hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding: 3rem 0;
+        }
+
+        .b2b-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4A574, #b8956a);
+            color: #0a0a0a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .b2b-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .b2b-hero p {
+            font-size: 1.2rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Two Column Layout */
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Left Column - Services */
+        .b2b-services-card {
+            background: #111111;
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid #1a1a1a;
+        }
+
+        .b2b-services-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            margin-bottom: 2.5rem;
+            color: #ffffff;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .b2b-services-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #D4A574;
+            border-radius: 2px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .service-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(212, 165, 116, 0.05));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-icon i {
+            font-size: 1.5rem;
+            color: #D4A574;
+        }
+
+        .service-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .pricing-info {
+            margin-top: 2rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(212, 165, 116, 0.08);
+            border-left: 4px solid #D4A574;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .pricing-info p {
+            font-size: 0.95rem;
+            color: #D4A574;
+            font-weight: 500;
+        }
+
+        /* Right Column - Contact Box */
+        .b2b-contact-card {
+            background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 2px solid #D4A574;
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.15);
+        }
+
+        .b2b-contact-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .b2b-contact-card > p {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .b2b-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D4A574;
+            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #D4A574, #b8956a);
+            color: #0a0a0a;
+            border: none;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+        }
+
+        /* Direct Contact */
+        .direct-contact {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+        }
+
+        .direct-contact span {
+            display: block;
+            font-size: 0.8rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: #D4A574;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(212, 165, 116, 0.05);
+        }
+
+        .contact-links a:hover {
+            background: rgba(212, 165, 116, 0.15);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .b2b-footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 5rem;
+        }
+
+        .b2b-footer p {
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .b2b-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .b2b-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .b2b-main {
+                padding: 7rem 5% 3rem;
+            }
+
+            .b2b-hero h1 {
+                font-size: 2rem;
+            }
+
+            .b2b-hero p {
+                font-size: 1rem;
+            }
+
+            .b2b-services-card,
+            .b2b-contact-card {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="b2b-nav">
+        <a href="index.html" class="b2b-logo">Bon Bon</a>
+        <a href="index.html" class="b2b-back">
+            <i class="fas fa-arrow-left"></i>
+            Takaisin verkkokauppaan
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="b2b-main">
+        <!-- Hero -->
+        <section class="b2b-hero">
+            <span class="b2b-badge">Yritysasiakkaille</span>
+            <h1>Premium Italian Delicacies<br>For Your Business</h1>
+            <p>Tarjoamme ravintoloille, hotelleille, kahviloille ja tapahtumajärjestäjille laadukkaita italialaisia tuotteita räätälöidyin hinnoin.</p>
+        </section>
+
+        <!-- Two Column Grid -->
+        <div class="b2b-grid">
+            <!-- Services -->
+            <div class="b2b-services-card">
+                <h2>Tuotevalikoimamme</h2>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Kakut & Jälkiruoat</h3>
+                        <p>Tiramisu, Pistaasi-Ricotta, Chocolate Trilogy ja täysikokoiset kakut juhliin ja tapahtumiin.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Leivonnaiset</h3>
+                        <p>Tuoreet croissantit, perinteiset cannoli, éclairs, sfogliatelle ja muut italialaiset herkut.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Kahvi & Juomat</h3>
+                        <p>Laadukas espresso, cappuccino, latte, matcha ja kausittaiset erikoisjuomat.</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Catering</h3>
+                        <p>Räätälöidyt tilaukset kokouksiin, juhliin ja yritystapahtumiin.</p>
+                    </div>
+                </div>
+
+                <div class="pricing-info">
+                    <p><i class="fas fa-tag"></i> &nbsp; Hinnat sovitaan tilausmäärän ja toimitustiheyden mukaan.</p>
+                </div>
+            </div>
+
+            <!-- Contact Box -->
+            <div class="b2b-contact-card">
+                <h2>Ota Yhteyttä</h2>
+                <p>Vastaamme tarjouspyyntöihin 24 tunnin sisällä</p>
+
+                <form class="b2b-form" id="b2bForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Yritys *</label>
+                            <input type="text" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Yhteyshenkilö *</label>
+                            <input type="text" name="contact" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Sähköposti *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Puhelin</label>
+                            <input type="tel" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Viesti *</label>
+                        <textarea name="message" placeholder="Kerro tarpeistasi: mitä tuotteita, arvioitu määrä, toimitustiheys..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Lähetä Tarjouspyyntö
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <div class="direct-contact">
+                    <span>Tai ota suoraan yhteyttä</span>
+                    <div class="contact-links">
+                        <a href="mailto:info@bonboncoffee.shop">
+                            <i class="fas fa-envelope"></i>
+                            info@bonboncoffee.shop
+                        </a>
+                        <a href="https://wa.me/358406751176" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            +358 40 675 1176
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="b2b-footer">
+        <p>© 2024 Bon Bon Coffee. Helsinki, Finland.</p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const company = formData.get('company');
+            const contact = formData.get('contact');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const message = formData.get('message');
+            
+            const subject = encodeURIComponent(`Tarjouspyyntö: ${company}`);
+            const body = encodeURIComponent(
+                `Yritys: ${company}\n` +
+                `Yhteyshenkilö: ${contact}\n` +
+                `Sähköposti: ${email}\n` +
+                `Puhelin: ${phone || 'Ei annettu'}\n\n` +
+                `Viesti:\n${message}`
+            );
+            
+            window.location.href = `mailto:info@bonboncoffee.shop?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
